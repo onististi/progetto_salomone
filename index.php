@@ -38,7 +38,7 @@ if(isset($_SESSION['studente']) || isset($_SESSION['scuola']))
                     </div>
                     <div class="col-lg-6">
                         <div class="image-container">
-                            <img class="img-fluid" src="styles/images/header-teamwork.svg" alt="alternative">
+                            <img class="img-fluid" src="styles/images/header-teacher.svg" alt="alternative">
                         </div>
                     </div>
                 </div>
@@ -56,7 +56,7 @@ if(isset($_SESSION['studente']) || isset($_SESSION['scuola']))
             <div class="row">
                 <div class="col-lg-12">
                     <div class="card">
-                        <img class="card-image" src="styles/images/services-icon-1.svg" alt="alternative">
+                        <img class="card-image" src="styles/images/info-icon-1.svg" alt="alternative">
                         <div class="card-body">
                             <h4 class="card-title"><span class="turquoise">Iscriviti</span></h4>
                             <p>Iscriviti allo stand che richiama di più la tua passione scolastica e in cui ti vedi nel futuro</p>
@@ -64,7 +64,7 @@ if(isset($_SESSION['studente']) || isset($_SESSION['scuola']))
                     </div>
                     
                     <div class="card">
-                        <img class="card-image" src="styles/images/services-icon-2.svg" alt="alternative">
+                        <img class="card-image" src="styles/images/info-icon-2.svg" alt="alternative">
                         <div class="card-body">
                             <h4 class="card-title"><span class="turquoise">Partecipa</span></h4>
                             <p>Raggiungi altri studenti con la tua stessa passione e partecipate ad una presentazione con esperti</p>
@@ -72,7 +72,7 @@ if(isset($_SESSION['studente']) || isset($_SESSION['scuola']))
                     </div>
                     
                     <div class="card">
-                        <img class="card-image" src="styles/images/services-icon-3.svg" alt="alternative">
+                        <img class="card-image" src="styles/images/info-icon-3.svg" alt="alternative">
                         <div class="card-body">
                             <h4 class="card-title"><span class="turquoise">Scegli</span></h4>
                             <p>Dopo attente riflessioni scegli il percorso che vuoi intraprendere e fallo tuo!</p>
