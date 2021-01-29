@@ -15,16 +15,6 @@ if(isset($_SESSION['studente']) || isset($_SESSION['scuola']))
     <!-- SEO Meta Tags -->
     <meta name="description" content="Create a stylish landing page for your business startup and get leads for the offered services with this HTML landing page template.">
     <meta name="author" content="Inovatik">
-
-    <!-- OG Meta Tags to improve the way the post looks when you share the page on LinkedIn, Facebook, Google+ -->
-	<meta property="og:site_name" content="" /> <!-- website name -->
-	<meta property="og:site" content="" /> <!-- website link -->
-	<meta property="og:title" content=""/> <!-- title shown in the actual shared post -->
-	<meta property="og:description" content="" /> <!-- description shown in the actual shared post -->
-	<meta property="og:image" content="" /> <!-- image link, make sure it's jpg -->
-	<meta property="og:url" content="" /> <!-- where do you want your post to link to -->
-	<meta property="og:type" content="article" />
-
     <!-- Website Title -->
     <title>Salone Orientamento</title>
     
@@ -53,7 +43,6 @@ if(isset($_SESSION['studente']) || isset($_SESSION['scuola']))
                         <div class="text-container">
                             <h1><span class="turquoise">Salone Orientamento</span></h1>
                             <p class="p-large">Scegli il tuo percorso formativo o lavorativo partecipando a vari stand proposti da varie scuole ed aziende</p>
-                            <!-- <a class="btn-solid-lg page-scroll" href="#services">INFORMAZIONI</a> -->
                         </div> <!-- end of text-container -->
                     </div> <!-- end of col -->
                     <div class="col-lg-6">
@@ -73,7 +62,6 @@ if(isset($_SESSION['studente']) || isset($_SESSION['scuola']))
             <div class="row">
                 <div class="col-lg-12">
                     <h2>Informazioni su Salone Orientamento</h2>
-                    <!-- <p class="p-heading p-large">We serve small and medium sized companies in all tech related industries with high quality growth services which are presented below</p> -->
                 </div> <!-- end of col -->
             </div> <!-- end of row -->
             <div class="row">
