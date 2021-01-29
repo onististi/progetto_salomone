@@ -1,152 +1,130 @@
-<?php
-include 'templates/header.php';
+<?php 
+include 'config/connect_db.php';
 
-if(!isset($_SESSION['usernameh']) || $_SESSION['usernameh'] == "" )
-   header("location:login/index.php");
+if(isset($_SESSION['studente']) || isset($_SESSION['scuola']))
+    header('location: home/index.php');
 ?>
 
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
-   <meta charset="UTF-8">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>AutoTrasporti onisti</title>
-   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-  <link rel="stylesheet" href="styles/login.css">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Create a stylish landing page for your business startup and get leads for the offered services with this HTML landing page template.">
+    <meta name="author" content="Inovatik">
+
+    <!-- OG Meta Tags to improve the way the post looks when you share the page on LinkedIn, Facebook, Google+ -->
+	<meta property="og:site_name" content="" /> <!-- website name -->
+	<meta property="og:site" content="" /> <!-- website link -->
+	<meta property="og:title" content=""/> <!-- title shown in the actual shared post -->
+	<meta property="og:description" content="" /> <!-- description shown in the actual shared post -->
+	<meta property="og:image" content="" /> <!-- image link, make sure it's jpg -->
+	<meta property="og:url" content="" /> <!-- where do you want your post to link to -->
+	<meta property="og:type" content="article" />
+
+    <!-- Website Title -->
+    <title>Salone Orientamento</title>
+    
+    <!-- Styles -->
+    <link href="https://fonts.googleapis.com/css?family=Raleway:400,400i,600,700,700i&amp;subset=latin-ext" rel="stylesheet">
+    <link href="styles/css/bootstrap.css" rel="stylesheet">
+    <link href="styles/css/fontawesome-all.css" rel="stylesheet">
+    <link href="styles/css/swiper.css" rel="stylesheet">
+	<link href="styles/css/magnific-popup.css" rel="stylesheet">
+	<link href="styles/css/styles.css" rel="stylesheet">
+	
+	<!-- Favicon  -->
+    <link rel="icon" href="styles/images/favicon.png">
 </head>
-<body class="bg-light">
-
-<form action = "nuovo_trasporto.php" method = post>
-   <input type="submit" class="fadeIn " value="richiedi un trasporto" name="ordilna" style="float:right"><br><br><br><br>
-</form>
-   <h1 class = "text-center"> I tuoi trasporti </h1>
-
-<?php
-$username = $_SESSION['usernameh'];
-$sql = "SELECT id_cliente FROM users WHERE username = '$username'";
-$result = $conn ->query($sql);
-$row = $result -> fetch_assoc();
-$id = $row['id_cliente'];
-
-$sql = "SELECT * FROM trasporto WHERE fk_cliente = '$id'";
-$result = $conn->query($sql);
-
-echo "<div class='container'>
-<h2>ORDINI</h2>";
-
-if(isset($result)){
-   echo "<div class='table-responsive'> <div class='table-responsive'><table class='table'> <thead> <tr>";
-
-   $row=mysqli_fetch_assoc($result);
-
-   if($row != null){
-      
-   echo "<th> id trasporto </th><th> localita partenza</th><th>località arrivo</th><th>data</th><th>id automezzo</th><th>peso</th><th>consegnato</th>"."<th> posizione</th></tr> </thead>";
-   $idLocalita = array();
-   $idAutomezzi = array();
-
-   while ($row ){   
-
-      echo "<tr><td>".$row['id_trasporto']."</td><td>";
-      $id_trasporto = $row ['id_trasporto'];
-      $lp = $row ['fk_località_partenza'];
-
-      $sql = "SELECT nome FROM località WHERE id_località = '$lp'";
-      $resultL = $conn -> query($sql);
-      $rowL = mysqli_fetch_assoc($resultL);
-      echo $rowL['nome']."</td><td>";
-
-      $la = $row ['fk_località_arrivo'];
-      $sql = "SELECT nome FROM località WHERE id_località = '$la'";
-      $resultLa = $conn -> query($sql);
-      $rowLa = mysqli_fetch_assoc($resultLa);
-      echo $rowLa['nome'];
-
-      echo"</td><td>".$row['data_trasporto']."</td><td>";
-      
-      if($row['fk_automezzo'] == null){
-         echo "non assegnato";
-      }else
-         echo $row['fk_automezzo'];
-      
-      echo"</td><td>".$row['peso_trasporto']." Kg</td><td>";
-      
-      if($row['consegnato'])
-         echo "✔️";
-      else{
-         echo "❌";
-
-      if(!in_array($row['fk_automezzo'],$idAutomezzi))
-         array_push($idAutomezzi,$row['fk_automezzo']);
-      }
-
-      if(!in_array($row['fk_località_partenza'],$idLocalita))
-         array_push($idLocalita,$row['fk_località_partenza']);
-      
-      if(!in_array($row['fk_località_arrivo'],$idLocalita))
-         array_push($idLocalita,$row['fk_località_arrivo']);
-         
-      echo"</td><td> <a href = 'storico.php?id=$id_trasporto'> storico </a></td></tr>";
-      $row=mysqli_fetch_assoc($result);
-   }
-
-   mysqli_free_result($result);  //libera memoria
-   echo "</table></tr></table></div></div></div></div>";
-
-//---------------------------------------------------------------LOCALITA-----------------------------------------------------------------//
-
-   echo "<div class='container'>
-   <h2>Località usate dai tuoi ordini</h2>
-   <div class='table-responsive'> <div class='table-responsive'><table class='table'> <thead> <tr>";
-
-   echo "<th> nome </th><th> cap </th><th> sigla provincia</th>";
-
-   foreach( $idLocalita as $v ){
-      $sql = "SELECT * FROM località WHERE id_località = '$v'";
-      $result = $conn -> query($sql);
-      
-      while ($row =  mysqli_fetch_assoc($result))   
-         echo "<tr><td>".$row['nome']."</td><td>".$row['cap']."</td><td>".$row['sigla_provincia']."</td></tr>";
-   }
-
-   mysqli_free_result($result);  //libera memoria
-   echo "</table></tr></table></div></div></div></div>";
+<body data-spy="scroll" data-target=".fixed-top">
 
 
-//-------------------------------------------------------------AUTOMEZZI---------------------------------------------------------------//
-   echo "<div class='container' name = 'iltimo'>
-   <h2>gli automezzi che trasportano i tuoi pacchi</h2>
-   <div class='table-responsive'> <div class='table-responsive'><table class='table'> <thead> <tr>";
+  <?php include 'templates/header.php' ?>
 
-   echo "<th> id automezzo </th><th> tipo </th><th> targa </th><th> nome autista </th></tr> </thead>";
+    <!-- Header -->
+    <header id="header" class="header">
+        <div class="header-content">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="text-container">
+                            <h1><span class="turquoise">Salone Orientamento</span></h1>
+                            <p class="p-large">Scegli il tuo percorso formativo o lavorativo partecipando a vari stand proposti da varie scuole ed aziende</p>
+                            <!-- <a class="btn-solid-lg page-scroll" href="#services">INFORMAZIONI</a> -->
+                        </div> <!-- end of text-container -->
+                    </div> <!-- end of col -->
+                    <div class="col-lg-6">
+                        <div class="image-container">
+                            <img class="img-fluid" src="styles/images/header-teamwork.svg" alt="alternative">
+                        </div> <!-- end of image-container -->
+                    </div> <!-- end of col -->
+                </div> <!-- end of row -->
+            </div> <!-- end of container -->
+        </div> <!-- end of header-content -->
+    </header> <!-- end of header -->
+    <!-- end of header -->
 
-   foreach( $idAutomezzi as $v ){
-      $sql = "SELECT * FROM automezzo WHERE id_automezzo = '$v'";
-      $result = $conn -> query($sql);
-      
-      while ($row = mysqli_fetch_assoc($result)){
+<!-- Services -->
+<div id="services" class="cards-1">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h2>Informazioni su Salone Orientamento</h2>
+                    <!-- <p class="p-heading p-large">We serve small and medium sized companies in all tech related industries with high quality growth services which are presented below</p> -->
+                </div> <!-- end of col -->
+            </div> <!-- end of row -->
+            <div class="row">
+                <div class="col-lg-12">
 
-         $t = $row ['fk_autista'];
-         $sqlA = "SELECT nome FROM autista WHERE id_autista = '$t'";
-         $resultA = $conn ->query($sqlA);
-         $rowA = mysqli_fetch_assoc($resultA);
-         $NA = $rowA['nome'];
+                    <!-- Card -->
+                    <div class="card">
+                        <img class="card-image" src="styles/images/services-icon-1.svg" alt="alternative">
+                        <div class="card-body">
+                            <h4 class="card-title"><span class="turquoise">Iscriviti</span></h4>
+                            <p>Iscriviti allo stand che richiama di più la tua passione scolastica e in cui ti vedi nel futuro</p>
+                        </div>
+                    </div>
+                    <!-- end of card -->
 
-         echo "<tr><td>".$row['id_automezzo']."</td><td>".$row['tipo_automezzo']."</td><td>".$row['targa']."</td><td>".$NA."</td>";
-      }
-   }
+                    <!-- Card -->
+                    <div class="card">
+                        <img class="card-image" src="styles/images/services-icon-2.svg" alt="alternative">
+                        <div class="card-body">
+                            <h4 class="card-title"><span class="turquoise">Partecipa</span></h4>
+                            <p>Raggiungi altri studenti con la tua stessa passione e partecipate ad una presentazione con esperti</p>
+                        </div>
+                    </div>
+                    <!-- end of card -->
 
-   }else
-      echo "<h2> non hai effettuato ordini </h2>";
+                    <!-- Card -->
+                    <div class="card">
+                        <img class="card-image" src="styles/images/services-icon-3.svg" alt="alternative">
+                        <div class="card-body">
+                            <h4 class="card-title"><span class="turquoise">Scegli</span></h4>
+                            <p>Dopo attente riflessioni scegli il percorso che vuoi intraprendere e fallo tuo!</p>
+                        </div>
+                    </div>
+                    <!-- end of card -->
+                    
+                </div> <!-- end of col -->
+            </div> <!-- end of row -->
+        </div> <!-- end of container -->
+    </div> <!-- end of cards-1 -->
+    <!-- end of services -->
 
-   mysqli_free_result($result);  //libera memoria
-   echo "</tr></table></table>";
-}
-echo'</div></div></div></div>';
+<?php include 'templates/footer.php'; ?>
 
-include 'templates/footer.php'; ?>
+    <!-- Scripts -->
+    <script src="styles/js/jquery.min.js"></script> <!-- jQuery for Bootstrap's JavaScript plugins -->
+    <script src="styles/js/popper.min.js"></script> <!-- Popper tooltip library for Bootstrap -->
+    <script src="styles/js/bootstrap.min.js"></script> <!-- Bootstrap framework -->
+    <script src="styles/js/jquery.easing.min.js"></script> <!-- jQuery Easing for smooth scrolling between anchors -->
+    <script src="styles/js/swiper.min.js"></script> <!-- Swiper for image and text sliders -->
+    <script src="styles/js/jquery.magnific-popup.js"></script> <!-- Magnific Popup for lightboxes -->
+    <script src="styles/js/validator.min.js"></script> <!-- Validator.js - Bootstrap plugin that validates forms -->
+    <script src="styles/js/scripts.js"></script> <!-- Custom scripts -->
 </body>
 </html>
