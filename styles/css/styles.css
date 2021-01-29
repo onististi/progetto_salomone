@@ -403,32 +403,6 @@ a:hover.back-to-top {
 		color: #00bfd8;
 	}
 
-	.navbar-custom .dropdown-menu {
-		padding-top: 1rem;
-		padding-bottom: 1rem;
-		border-top: 0.75rem solid rgba(0, 0, 0, 0);
-		border-radius: 0.25rem;
-	}
-
-	.navbar-custom.top-nav-collapse .dropdown-menu {
-		border-top: 0.5rem solid rgba(0, 0, 0, 0);
-		box-shadow: 0 0.375rem 0.375rem 0 rgba(0, 0, 0, 0.02);
-	}
-
-	.navbar-custom .dropdown-item {
-		padding-top: 0.25rem;
-		padding-bottom: 0.25rem;
-	}
-
-	.navbar-custom .dropdown-items-divide-hr {
-		width: 84%;
-	}
-
-	.navbar-custom .social-icons {
-		display: block;
-		margin-left: 0.5rem;
-	}
-
 	.navbar-custom .fa-stack {
 		margin-bottom: 0.1875rem;
 		margin-left: 0.25rem;

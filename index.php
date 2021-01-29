@@ -24,7 +24,7 @@ if(isset($_SESSION['studente']) || isset($_SESSION['scuola']))
 </head>
 
 <body data-spy="scroll" data-target=".fixed-top">
-    <?php include 'templates/header.php' ?>
+    <?php include 'templates/header.html' ?>
 
     <header id="header" class="header">
         <div class="header-content">
@@ -83,7 +83,7 @@ if(isset($_SESSION['studente']) || isset($_SESSION['scuola']))
         </div>
     </div>
 
-    <?php include 'templates/footer.php'; ?>
+    <?php include 'templates/footer.html'; ?>
 
     <script src="styles/js/jquery.min.js"></script>
     <script src="styles/js/popper.min.js"></script>
