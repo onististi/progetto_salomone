@@ -20,14 +20,14 @@
 </head>
 
 <body data-spy="scroll" data-target=".fixed-top">
-    <?php include '../templates/header_login_studente.html' ?>
+    <?php include '../templates/header.php' ?>
 
     <header id="header" class="header">
         <div class="header-content">
             <div id="login-form" class="login-form">
                 <div class="card">
                     <div class="card-body">
-                        <form action="../index.php" method="POST" data-toggle="validator" data-focus="false">
+                        <form action="auth.php" method="POST" data-toggle="validator" data-focus="false">
                             <div class="form-group">
                                 <input type="text" class="form-control-input" id="username" name="username" placeholder="Username" required>
                                 <div class="help-block with-errors"></div>
