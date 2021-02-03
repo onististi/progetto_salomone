@@ -1,8 +1,5 @@
 <?php 
 include 'config/connect_db.php';
-
-if(isset($_SESSION['studente']) || isset($_SESSION['scuola']))
-    header('location: home/index.php');
 ?>
 
 <!DOCTYPE html>
