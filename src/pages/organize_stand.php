@@ -39,7 +39,7 @@
                             </div>
 
                             <div class="form-group">
-                                <input type="text" class="form-control-input" id="ora" name="ora" placeholder="Ora" required>
+                                <input type="time" class="form-control-input" id="ora" name="ora" placeholder="Ora" required>
                                 <div class="help-block with-errors"></div>
                             </div>
 

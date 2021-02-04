@@ -20,30 +20,60 @@
 </head>
 
 <body data-spy="scroll" data-target=".fixed-top">
-    <?php include '../templates/header.php' ?>
-
-    <header id="header" class="header">
-        <div class="header-content">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-6">
-                        <div class="text-container">
-                            <h1>Benvenuto <span class="turquoise"><?php echo $_SESSION["scuola"] ?></span></h1>
-                            <p class="p-large">Organizza il tuo stand per far conoscere la tua scuola agli studenti</p>
-                            <input type="button" class="btn-solid-reg page-scroll" onclick="location.href = 'organize_stand.php?nav=home_scuola';" value="ORGANIZZA ATTIVITÀ">
-                        </div>
-                    </div>
-                    <div class="col-lg-6">
-                        <div class="image-container">
-                            <img class="img-fluid" src="../assets/images/header-school.svg" alt="alternative">
+    <?php 
+    include '../templates/header.php';
+    
+    if ($_SESSION["tipo_scuola"] == "Superiore") {
+        echo '<header id="header" class="header">
+                <div class="header-content">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="text-container">
+                                    <h1>Benvenuto <span class="turquoise">' . $_SESSION["scuola"] . '</span></h1>
+                                    <p class="p-large">Organizza il tuo stand per far conoscere la tua scuola agli studenti</p>
+                                    <form action="organize_stand.php">
+                                    <input type="submit" class="btn-solid-reg page-scroll" value="ORGANIZZA ATTIVITÀ">
+                                    <input name="nav" value="home_scuola" hidden>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="image-container">
+                                    <img class="img-fluid" src="../assets/images/header-school.svg" alt="alternative">
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-    </header>
-
-    <?php include '../templates/footer.html'; ?>
+            </header>';
+    } else if ($_SESSION["tipo_scuola"] == "Media") {
+        echo '<header id="header" class="header">
+                <div class="header-content">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="text-container">
+                                    <h1>Benvenuto <span class="turquoise">' . $_SESSION["scuola"] . '</span></h1>
+                                    <p class="p-large">Registra i tuoi studenti per dargli la possibilità di partecipare agli stand organizzati</p>
+                                    <form action="">
+                                    <input type="submit" class="btn-solid-reg page-scroll" value="REGISTRA STUDENTI">
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="image-container">
+                                    <img class="img-fluid" src="../assets/images/header-school.svg" alt="alternative">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>';
+    }
+    
+    include '../templates/footer.html'; 
+    ?>
 
     <script src="../assets/js/jquery.min.js"></script>
     <script src="../assets/js/popper.min.js"></script>

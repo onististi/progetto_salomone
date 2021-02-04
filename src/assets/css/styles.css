@@ -454,7 +454,7 @@ a:hover.back-to-top {
 	.header {
 		background: url('../images/header-background.jpg') center center no-repeat;
 		background-size: cover;
-		min-height: 40rem;
+		min-height: 45rem;
 	}
 	
 	.header .header-content {

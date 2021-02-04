@@ -66,8 +66,18 @@
 	transition: all 0.2s;
 }
 
-.logo {
-    cursor: pointer;
+.logo::-webkit-file-upload-button {
+	visibility: hidden;
+}
+
+.logo::before {
+	content: "Seleziona logo";
+	display: inline-block;
+	border: none;
+	padding: 0.2rem 1rem;
+	outline: none;
+	-webkit-user-select: none;
+	cursor: pointer;
 }
 
 .description {
