@@ -1,20 +1,21 @@
 -- phpMyAdmin SQL Dump
--- version 4.2.7.1
--- http://www.phpmyadmin.net
+-- version 5.0.4
+-- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Feb 04, 2021 alle 10:54
--- Versione del server: 5.6.20
--- PHP Version: 5.5.15
+-- Host: localhost
+-- Creato il: Feb 04, 2021 alle 13:23
+-- Versione del server: 10.4.16-MariaDB
+-- Versione PHP: 7.4.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
+/*!40101 SET NAMES utf8mb4 */;
 
 --
 -- Database: `salone_orientamento`
@@ -26,14 +27,15 @@ SET time_zone = "+00:00";
 -- Struttura della tabella `attivita`
 --
 
-CREATE TABLE IF NOT EXISTS `attivita` (
-`id_attivita` int(11) NOT NULL,
+CREATE TABLE `attivita` (
+  `id_attivita` int(11) NOT NULL,
   `titolo` varchar(50) NOT NULL,
   `descrizione` varchar(256) NOT NULL,
   `logo` blob NOT NULL,
   `giorno` date NOT NULL,
-  `ora` time NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 AUTO_INCREMENT=1 ;
+  `ora` time NOT NULL,
+  `occupato` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -41,12 +43,11 @@ CREATE TABLE IF NOT EXISTS `attivita` (
 -- Struttura della tabella `azienda`
 --
 
-CREATE TABLE IF NOT EXISTS `azienda` (
+CREATE TABLE `azienda` (
   `codice` varchar(10) NOT NULL,
   `fk_attivita` int(11) NOT NULL,
   `nome` varchar(50) NOT NULL,
-  `cognome` varchar(50) NOT NULL,
-  `percorso` text NOT NULL
+  `password` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -55,7 +56,7 @@ CREATE TABLE IF NOT EXISTS `azienda` (
 -- Struttura della tabella `iscrizione`
 --
 
-CREATE TABLE IF NOT EXISTS `iscrizione` (
+CREATE TABLE `iscrizione` (
   `fk_matricola` varchar(10) NOT NULL,
   `fk_attivita` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -66,14 +67,14 @@ CREATE TABLE IF NOT EXISTS `iscrizione` (
 -- Struttura della tabella `responsabile`
 --
 
-CREATE TABLE IF NOT EXISTS `responsabile` (
-`id_responsabile` int(11) NOT NULL,
+CREATE TABLE `responsabile` (
+  `id_responsabile` int(11) NOT NULL,
   `fk_attivita` int(11) NOT NULL,
   `nome` varchar(50) NOT NULL,
   `cognome` varchar(50) NOT NULL,
   `mail` text NOT NULL,
   `qualifica` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -81,7 +82,7 @@ CREATE TABLE IF NOT EXISTS `responsabile` (
 -- Struttura della tabella `scuola`
 --
 
-CREATE TABLE IF NOT EXISTS `scuola` (
+CREATE TABLE `scuola` (
   `codice` varchar(10) NOT NULL,
   `fk_attivita` int(11) DEFAULT NULL,
   `nome` varchar(50) NOT NULL,
@@ -94,7 +95,7 @@ CREATE TABLE IF NOT EXISTS `scuola` (
 --
 
 INSERT INTO `scuola` (`codice`, `fk_attivita`, `nome`, `password`, `tipo`) VALUES
-('AAAA', NULL, 'Scuola', '1234', 'Superiore');
+('AAAA', NULL, 'Scuolaaaaaaaaaaaaa a aaaaaaaaaaaaaa aaaaaaaaaaa', '1234', 'Superiore');
 
 -- --------------------------------------------------------
 
@@ -102,7 +103,7 @@ INSERT INTO `scuola` (`codice`, `fk_attivita`, `nome`, `password`, `tipo`) VALUE
 -- Struttura della tabella `studente`
 --
 
-CREATE TABLE IF NOT EXISTS `studente` (
+CREATE TABLE `studente` (
   `matricola` varchar(10) NOT NULL,
   `fk_scuola` varchar(10) NOT NULL,
   `nome` varchar(50) NOT NULL,
@@ -123,59 +124,66 @@ INSERT INTO `studente` (`matricola`, `fk_scuola`, `nome`, `cognome`, `username`,
 ('ABC', 'AAAA', 'Nome', 'Cognome', 'nome.cognome', '5678', 'M', '', '5A', '2002-10-17');
 
 --
--- Indexes for dumped tables
+-- Indici per le tabelle scaricate
 --
 
 --
--- Indexes for table `attivita`
+-- Indici per le tabelle `attivita`
 --
 ALTER TABLE `attivita`
- ADD PRIMARY KEY (`id_attivita`);
+  ADD PRIMARY KEY (`id_attivita`);
 
 --
--- Indexes for table `azienda`
+-- Indici per le tabelle `azienda`
 --
 ALTER TABLE `azienda`
- ADD PRIMARY KEY (`codice`), ADD KEY `fk_attivita_azienda` (`fk_attivita`);
+  ADD PRIMARY KEY (`codice`),
+  ADD KEY `fk_attivita_azienda` (`fk_attivita`);
 
 --
--- Indexes for table `iscrizione`
+-- Indici per le tabelle `iscrizione`
 --
 ALTER TABLE `iscrizione`
- ADD PRIMARY KEY (`fk_matricola`,`fk_attivita`), ADD KEY `fk_attivita_iscrizione` (`fk_attivita`);
+  ADD PRIMARY KEY (`fk_matricola`,`fk_attivita`),
+  ADD KEY `fk_attivita_iscrizione` (`fk_attivita`);
 
 --
--- Indexes for table `responsabile`
+-- Indici per le tabelle `responsabile`
 --
 ALTER TABLE `responsabile`
- ADD PRIMARY KEY (`id_responsabile`), ADD KEY `fk_attivita_responsabile` (`fk_attivita`);
+  ADD PRIMARY KEY (`id_responsabile`),
+  ADD KEY `fk_attivita_responsabile` (`fk_attivita`);
 
 --
--- Indexes for table `scuola`
+-- Indici per le tabelle `scuola`
 --
 ALTER TABLE `scuola`
- ADD PRIMARY KEY (`codice`), ADD KEY `fk_attivita_scuola` (`fk_attivita`) USING BTREE;
+  ADD PRIMARY KEY (`codice`),
+  ADD KEY `fk_attivita_scuola` (`fk_attivita`) USING BTREE;
 
 --
--- Indexes for table `studente`
+-- Indici per le tabelle `studente`
 --
 ALTER TABLE `studente`
- ADD PRIMARY KEY (`matricola`), ADD KEY `fk_scuola_studente` (`fk_scuola`);
+  ADD PRIMARY KEY (`matricola`),
+  ADD KEY `fk_scuola_studente` (`fk_scuola`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT per le tabelle scaricate
 --
 
 --
--- AUTO_INCREMENT for table `attivita`
+-- AUTO_INCREMENT per la tabella `attivita`
 --
 ALTER TABLE `attivita`
-MODIFY `id_attivita` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_attivita` int(11) NOT NULL AUTO_INCREMENT;
+
 --
--- AUTO_INCREMENT for table `responsabile`
+-- AUTO_INCREMENT per la tabella `responsabile`
 --
 ALTER TABLE `responsabile`
-MODIFY `id_responsabile` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_responsabile` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- Limiti per le tabelle scaricate
 --
@@ -184,32 +192,33 @@ MODIFY `id_responsabile` int(11) NOT NULL AUTO_INCREMENT;
 -- Limiti per la tabella `azienda`
 --
 ALTER TABLE `azienda`
-ADD CONSTRAINT `fk_attivita_azienda` FOREIGN KEY (`fk_attivita`) REFERENCES `attivita` (`id_attivita`);
+  ADD CONSTRAINT `fk_attivita_azienda` FOREIGN KEY (`fk_attivita`) REFERENCES `attivita` (`id_attivita`);
 
 --
 -- Limiti per la tabella `iscrizione`
 --
 ALTER TABLE `iscrizione`
-ADD CONSTRAINT `fk_attivita_iscrizione` FOREIGN KEY (`fk_attivita`) REFERENCES `attivita` (`id_attivita`),
-ADD CONSTRAINT `fk_matricola_studente` FOREIGN KEY (`fk_matricola`) REFERENCES `studente` (`matricola`);
+  ADD CONSTRAINT `fk_attivita_iscrizione` FOREIGN KEY (`fk_attivita`) REFERENCES `attivita` (`id_attivita`),
+  ADD CONSTRAINT `fk_matricola_studente` FOREIGN KEY (`fk_matricola`) REFERENCES `studente` (`matricola`);
 
 --
 -- Limiti per la tabella `responsabile`
 --
 ALTER TABLE `responsabile`
-ADD CONSTRAINT `fk_attivita_responsabile` FOREIGN KEY (`fk_attivita`) REFERENCES `attivita` (`id_attivita`);
+  ADD CONSTRAINT `fk_attivita_responsabile` FOREIGN KEY (`fk_attivita`) REFERENCES `attivita` (`id_attivita`);
 
 --
 -- Limiti per la tabella `scuola`
 --
 ALTER TABLE `scuola`
-ADD CONSTRAINT `fk_attivita_scuola` FOREIGN KEY (`fk_attivita`) REFERENCES `attivita` (`id_attivita`) ON DELETE SET NULL ON UPDATE SET NULL;
+  ADD CONSTRAINT `fk_attivita_scuola` FOREIGN KEY (`fk_attivita`) REFERENCES `attivita` (`id_attivita`) ON DELETE SET NULL ON UPDATE SET NULL;
 
 --
 -- Limiti per la tabella `studente`
 --
 ALTER TABLE `studente`
-ADD CONSTRAINT `fk_scuola_studente` FOREIGN KEY (`fk_scuola`) REFERENCES `scuola` (`codice`);
+  ADD CONSTRAINT `fk_scuola_studente` FOREIGN KEY (`fk_scuola`) REFERENCES `scuola` (`codice`);
+COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
