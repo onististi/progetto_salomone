@@ -16,7 +16,7 @@
 	<link href="../assets/css/styles.css" rel="stylesheet">
 	<link href="../assets/css/styles_login.css" rel="stylesheet">
 	
-    <link rel="icon" href="../styles/images/icon.png">
+    <link rel="icon" href="../assets/images/favicon.png">
 </head>
 
 <body data-spy="scroll" data-target=".fixed-top">

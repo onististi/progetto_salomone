@@ -17,7 +17,7 @@ include 'src/config/connect_db.php';
 	<link href="src/assets/css/magnific-popup.css" rel="stylesheet">
 	<link href="src/assets/css/styles.css" rel="stylesheet">
 	
-    <link rel="icon" href="styles/images/icon.png">
+    <link rel="icon" href="src/assets/images/favicon.png">
 </head>
 
 <body data-spy="scroll" data-target=".fixed-top">

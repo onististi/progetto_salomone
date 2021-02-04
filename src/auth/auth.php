@@ -14,7 +14,7 @@ if ((isset($_POST["codice_scuola"])) && (isset($_POST["password"]))) {
     if (mysqli_num_rows($result) > 0)  {
         $_SESSION["utente"] = $data["codice"];
         $_SESSION["scuola"] = $data["nome"];
-        header("Location: ../home/home_scuola.php?nav=home_scuola");
+        header("Location: ../pages/home_scuola.php?nav=home_scuola");
     } else {
         mysqli_close($conn);
         header("Location: login_scuola.php");
@@ -32,7 +32,7 @@ if ((isset($_POST["username"])) && (isset($_POST["password"]))) {
 
     if (mysqli_num_rows($result) > 0)  {
         $_SESSION["utente"] = $data["username"];
-        header("Location: ../home/home_studente.php?nav=home_studente");
+        header("Location: ../pages/home_studente.php?nav=home_studente");
     } else {
         mysqli_close($conn);
         header("Location: login_studente.php");
