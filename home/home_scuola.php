@@ -30,7 +30,7 @@
                         <div class="text-container">
                             <h1>Benvenuto <span class="turquoise"><?php echo $_SESSION["scuola"] ?></span></h1>
                             <p class="p-large">Organizza il tuo stand per far conoscere la tua scuola agli studenti</p>
-                            <input type="button" class="btn-solid-reg page-scroll" onclick="location.href = 'organize_stand.php?nav=home_scuola';" value="ORGANIZZA STAND">
+                            <input type="button" class="btn-solid-reg page-scroll" onclick="location.href = 'organize_stand.php?nav=home_scuola';" value="ORGANIZZA ATTIVITÀ">
                         </div>
                     </div>
                     <div class="col-lg-6">

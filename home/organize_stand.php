@@ -49,7 +49,7 @@
                             </div>
 
                             <div class="button-wrapper">
-                                <input type="submit" class="btn-solid-reg page-scroll" value="CREA STAND">
+                                <input type="submit" class="btn-solid-reg page-scroll" value="CREA ATTIVITÀ">
                             </div>
                         </form>
                     </div>
