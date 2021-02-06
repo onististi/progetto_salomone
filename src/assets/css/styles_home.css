@@ -66,18 +66,25 @@
 	transition: all 0.2s;
 }
 
-.logo::-webkit-file-upload-button {
+.logo::-webkit-file-upload-button , .list::-webkit-file-upload-button{
 	visibility: hidden;
 }
 
-.logo::before {
-	content: "Seleziona logo";
+.logo::before , .list::before{
 	display: inline-block;
 	border: none;
 	padding: 0.2rem 1rem;
 	outline: none;
 	-webkit-user-select: none;
 	cursor: pointer;
+}
+
+.logo::before {
+	content: "Seleziona logo";
+}
+
+.list::before {
+	content: "Seleziona csv";
 }
 
 .description {

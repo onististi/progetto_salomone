@@ -1,22 +1,23 @@
-<?php 
+<?php
 include 'src/config/connect_db.php';
 ?>
 
 <!DOCTYPE html>
 <html lang="it">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <title>Salone Orientamento</title>
-    
+
     <link href="https://fonts.googleapis.com/css?family=Raleway:400,400i,600,700,700i&amp;subset=latin-ext" rel="stylesheet">
     <link href="src/assets/css/bootstrap.css" rel="stylesheet">
     <link href="src/assets/css/fontawesome-all.css" rel="stylesheet">
     <link href="src/assets/css/swiper.css" rel="stylesheet">
-	<link href="src/assets/css/magnific-popup.css" rel="stylesheet">
-	<link href="src/assets/css/styles.css" rel="stylesheet">
-	
+    <link href="src/assets/css/magnific-popup.css" rel="stylesheet">
+    <link href="src/assets/css/styles.css" rel="stylesheet">
+
     <link rel="icon" href="src/assets/images/favicon.png">
 </head>
 
@@ -59,7 +60,7 @@ include 'src/config/connect_db.php';
                             <p>Iscriviti allo stand che richiama di più la tua passione scolastica e in cui ti vedi nel futuro</p>
                         </div>
                     </div>
-                    
+
                     <div class="card">
                         <img class="card-image" src="src/assets/images/info-icon-2.svg" alt="alternative">
                         <div class="card-body">
@@ -67,7 +68,7 @@ include 'src/config/connect_db.php';
                             <p>Raggiungi altri studenti con la tua stessa passione e partecipate ad una presentazione con esperti</p>
                         </div>
                     </div>
-                    
+
                     <div class="card">
                         <img class="card-image" src="src/assets/images/info-icon-3.svg" alt="alternative">
                         <div class="card-body">
@@ -91,4 +92,5 @@ include 'src/config/connect_db.php';
     <script src="src/assets/js/validator.min.js"></script>
     <script src="src/assets/js/scripts.js"></script>
 </body>
+
 </html>

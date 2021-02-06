@@ -12,7 +12,7 @@ if ((isset($_POST["codice_scuola"])) && (isset($_POST["password"]))) {
     $data = mysqli_fetch_array($result);
 
     if (mysqli_num_rows($result) > 0)  {
-        $_SESSION["utente"] = $data["codice"];
+        $_SESSION["codice"] = $data["codice"];
         $_SESSION["scuola"] = $data["nome"];
         $_SESSION["tipo_scuola"] = $data["tipo"];
         header("Location: ../pages/home_scuola.php?nav=home_scuola");
