@@ -75,7 +75,7 @@
 	border: none;
 	padding: 0.2rem 1rem;
 	outline: none;
-	-webkit-user-select: none;
+	--webkit-user-select: none;
 	cursor: pointer;
 }
 
