@@ -22,13 +22,13 @@ while ($data = fgetcsv($file)) {
     if (!mysqli_query($conn, $query)) {    //if theres any problem
         echo "<center><p style='font-size: 2vw;'>$username non registrato correttamente.</p><p style='font-size: 1vw;'>Error: " . mysqli_error($conn) . "</p></center>";
         $success = false;
-        $_SESSION["registrato"] = "failed";
+        //$_SESSION["registrato"] = "failed";
     }
 }
 
 if ($success) {    //if success
     echo "Registrato correttamente ";
-    $_SESSION["registrato"] = "success";
+    //$_SESSION["registrato"] = "success";
 }
 echo "<a href='../../index.php'>Esci</a>";
 

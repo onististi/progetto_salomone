@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Creato il: Feb 09, 2021 alle 12:21
+-- Creato il: Feb 10, 2021 alle 00:19
 -- Versione del server: 10.4.16-MariaDB
 -- Versione PHP: 7.4.12
 
@@ -37,6 +37,22 @@ CREATE TABLE `attivita` (
   `occupato` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dump dei dati per la tabella `attivita`
+--
+
+INSERT INTO `attivita` (`id_attivita`, `titolo`, `descrizione`, `logo`, `giorno`, `ora`, `occupato`) VALUES
+(1, 'empty', 'empty', 'empty', '2021-11-12', '09:30:00', 0),
+(2, 'empty', 'empty', 'empty', '2021-11-12', '10:30:00', 0),
+(3, 'empty', 'empty', 'empty', '2021-11-12', '11:30:00', 0),
+(4, 'Orientiamo sti bambini', 'BAMBINI VIAAAAAAAA', '/opt/lampp/htdocs/WebSites/progetto_salomone/src/uploads/AAAA.jpeg', '2021-11-12', '12:30:00', 1),
+(5, 'empty', 'empty', 'empty', '2021-11-12', '13:30:00', 0),
+(6, 'empty', 'empty', 'empty', '2021-11-13', '09:30:00', 0),
+(7, 'empty', 'empty', 'empty', '2021-11-13', '10:30:00', 0),
+(8, 'Orientamento di Tiziano', 'SISIS', '/opt/lampp/htdocs/WebSites/progetto_salomone/src/uploads/ZZZZ.jpeg', '2021-11-13', '11:30:00', 1),
+(9, 'empty', 'empty', 'empty', '2021-11-13', '12:30:00', 0),
+(10, 'empty', 'empty', 'empty', '2021-11-13', '13:30:00', 0);
+
 -- --------------------------------------------------------
 
 --
@@ -47,15 +63,16 @@ CREATE TABLE `azienda` (
   `codice` varchar(10) NOT NULL,
   `fk_attivita` int(11) DEFAULT NULL,
   `nome` text NOT NULL,
-  `password` text NOT NULL
+  `password` text NOT NULL,
+  `logo` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dump dei dati per la tabella `azienda`
 --
 
-INSERT INTO `azienda` (`codice`, `fk_attivita`, `nome`, `password`) VALUES
-('ZZZZ', NULL, 'Tiziano Inc.', '5678');
+INSERT INTO `azienda` (`codice`, `fk_attivita`, `nome`, `password`, `logo`) VALUES
+('ZZZZ', 8, 'Tiziano Inc.', '5678', '');
 
 -- --------------------------------------------------------
 
@@ -95,6 +112,13 @@ CREATE TABLE `scuola_primo_grado` (
   `password` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dump dei dati per la tabella `scuola_primo_grado`
+--
+
+INSERT INTO `scuola_primo_grado` (`codice`, `nome`, `password`) VALUES
+('PPPP', 'Scuola Media di Cannobio', '1234');
+
 -- --------------------------------------------------------
 
 --
@@ -105,16 +129,17 @@ CREATE TABLE `scuola_secondo_grado` (
   `codice` varchar(10) NOT NULL,
   `fk_attivita` int(11) DEFAULT NULL,
   `nome` text NOT NULL,
-  `password` text NOT NULL
+  `password` text NOT NULL,
+  `logo` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dump dei dati per la tabella `scuola_secondo_grado`
 --
 
-INSERT INTO `scuola_secondo_grado` (`codice`, `fk_attivita`, `nome`, `password`) VALUES
-('AAAA', NULL, 'Scuola AAAA', '1234'),
-('VBTF00701B', NULL, 'Lorenzo Cobianchi', '1234');
+INSERT INTO `scuola_secondo_grado` (`codice`, `fk_attivita`, `nome`, `password`, `logo`) VALUES
+('AAAA', 4, 'Scuola AAAA', '1234', ''),
+('VBTF00701B', NULL, 'Lorenzo Cobianchi', '1234', '');
 
 -- --------------------------------------------------------
 
@@ -155,8 +180,16 @@ CREATE TABLE `universita` (
   `codice` varchar(10) NOT NULL,
   `fk_attivita` int(11) DEFAULT NULL,
   `nome` text NOT NULL,
-  `password` text NOT NULL
+  `password` text NOT NULL,
+  `logo` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dump dei dati per la tabella `universita`
+--
+
+INSERT INTO `universita` (`codice`, `fk_attivita`, `nome`, `password`, `logo`) VALUES
+('UUUU', NULL, 'Unito', '1234', '');
 
 --
 -- Indici per le tabelle scaricate
@@ -224,7 +257,7 @@ ALTER TABLE `universita`
 -- AUTO_INCREMENT per la tabella `attivita`
 --
 ALTER TABLE `attivita`
-  MODIFY `id_attivita` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_attivita` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT per la tabella `responsabile`
