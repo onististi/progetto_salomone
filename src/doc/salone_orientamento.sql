@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Creato il: Feb 06, 2021 alle 23:25
+-- Creato il: Feb 09, 2021 alle 12:21
 -- Versione del server: 10.4.16-MariaDB
 -- Versione PHP: 7.4.12
 
@@ -29,9 +29,9 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `attivita` (
   `id_attivita` int(11) NOT NULL,
-  `titolo` varchar(50) NOT NULL,
-  `descrizione` varchar(256) NOT NULL,
-  `logo` blob NOT NULL,
+  `titolo` text NOT NULL,
+  `descrizione` text NOT NULL,
+  `logo` text NOT NULL,
   `giorno` date NOT NULL,
   `ora` time NOT NULL,
   `occupato` tinyint(1) NOT NULL
@@ -45,10 +45,17 @@ CREATE TABLE `attivita` (
 
 CREATE TABLE `azienda` (
   `codice` varchar(10) NOT NULL,
-  `fk_attivita` int(11) NOT NULL,
-  `nome` varchar(50) NOT NULL,
-  `password` varchar(50) NOT NULL
+  `fk_attivita` int(11) DEFAULT NULL,
+  `nome` text NOT NULL,
+  `password` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dump dei dati per la tabella `azienda`
+--
+
+INSERT INTO `azienda` (`codice`, `fk_attivita`, `nome`, `password`) VALUES
+('ZZZZ', NULL, 'Tiziano Inc.', '5678');
 
 -- --------------------------------------------------------
 
@@ -70,8 +77,8 @@ CREATE TABLE `iscrizione` (
 CREATE TABLE `responsabile` (
   `id_responsabile` int(11) NOT NULL,
   `fk_attivita` int(11) NOT NULL,
-  `nome` varchar(50) NOT NULL,
-  `cognome` varchar(50) NOT NULL,
+  `nome` text NOT NULL,
+  `cognome` text NOT NULL,
   `mail` text NOT NULL,
   `qualifica` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -79,24 +86,35 @@ CREATE TABLE `responsabile` (
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `scuola`
+-- Struttura della tabella `scuola_primo_grado`
 --
 
-CREATE TABLE `scuola` (
+CREATE TABLE `scuola_primo_grado` (
+  `codice` varchar(10) NOT NULL,
+  `nome` text NOT NULL,
+  `password` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Struttura della tabella `scuola_secondo_grado`
+--
+
+CREATE TABLE `scuola_secondo_grado` (
   `codice` varchar(10) NOT NULL,
   `fk_attivita` int(11) DEFAULT NULL,
-  `nome` varchar(50) NOT NULL,
-  `password` varchar(50) NOT NULL,
-  `tipo` text NOT NULL
+  `nome` text NOT NULL,
+  `password` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dump dei dati per la tabella `scuola`
+-- Dump dei dati per la tabella `scuola_secondo_grado`
 --
 
-INSERT INTO `scuola` (`codice`, `fk_attivita`, `nome`, `password`, `tipo`) VALUES
-('AAAA', NULL, 'Scuolaaaaaaaaaaaaa a aaaaaaaaaaaaaa aaaaaaaaaaa', '1234', 'Superiore'),
-('VBTF00701B', NULL, 'Istituto Lorenzo Cobianchi', '1234', 'Superiore');
+INSERT INTO `scuola_secondo_grado` (`codice`, `fk_attivita`, `nome`, `password`) VALUES
+('AAAA', NULL, 'Scuola AAAA', '1234'),
+('VBTF00701B', NULL, 'Lorenzo Cobianchi', '1234');
 
 -- --------------------------------------------------------
 
@@ -105,16 +123,39 @@ INSERT INTO `scuola` (`codice`, `fk_attivita`, `nome`, `password`, `tipo`) VALUE
 --
 
 CREATE TABLE `studente` (
-  `matricola` varchar(16) NOT NULL,
+  `matricola` varchar(10) NOT NULL,
   `fk_scuola` varchar(10) NOT NULL,
-  `nome` varchar(50) NOT NULL,
-  `cognome` varchar(50) NOT NULL,
-  `username` varchar(50) NOT NULL,
-  `password` varchar(56) NOT NULL,
+  `username` text NOT NULL,
+  `password` text NOT NULL,
+  `nome` text NOT NULL,
+  `cognome` text NOT NULL,
   `sesso` varchar(1) NOT NULL,
   `mail` text NOT NULL,
-  `classe` varchar(10) NOT NULL,
+  `classe` text NOT NULL,
   `data_nascita` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dump dei dati per la tabella `studente`
+--
+
+INSERT INTO `studente` (`matricola`, `fk_scuola`, `username`, `password`, `nome`, `cognome`, `sesso`, `mail`, `classe`, `data_nascita`) VALUES
+('2035771', 'AAAA', 'jacopo.guzzo', '$5$idkanysus$xsWHKXTUD/JRnAp6BvWyKbKzXl7/JqGg6MDnIQjHOW6', 'Jacopo', 'Guzzo', 'M', 'jacopo.guzzo@edu.cobianchi.it', '5AITI', '2002-09-05'),
+('2035772', 'AAAA', 'tiziano_yahtahey.tedeschi', '$5$idkanysus$M6KDTpY/GEpkF4TFs8N/DnZPYnVdHRsenZXi7IFwOI7', 'Tiziano Yahtahey', 'Tedeschi', 'M', 'tiziano.tedeschi@edu.cobianchi.it', '5AITI', '2002-10-17'),
+('2035773', 'AAAA', 'aronne.onisti', '$5$idkanysus$eSv2NX9Zqv6ZL/qRTjq6zGg1f03p7Morjce6Y45BVw8', 'Aronne', 'Onisti', 'M', 'aronne.onisti@edu.cobianchi.it', '5AITI', '2002-11-22'),
+('2035774', 'AAAA', 'marco.fallara', '$5$idkanysus$Cr2ZMkDTLs68h4/uoJnTNbP5C9OWS6rTVyV4X16Qs0D', 'Marco', 'Fallara', 'M', 'marco.fallara@edu.cobianchi.it', '5AITI', '2002-08-07');
+
+-- --------------------------------------------------------
+
+--
+-- Struttura della tabella `universita`
+--
+
+CREATE TABLE `universita` (
+  `codice` varchar(10) NOT NULL,
+  `fk_attivita` int(11) DEFAULT NULL,
+  `nome` text NOT NULL,
+  `password` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -149,18 +190,31 @@ ALTER TABLE `responsabile`
   ADD KEY `fk_attivita_responsabile` (`fk_attivita`);
 
 --
--- Indici per le tabelle `scuola`
+-- Indici per le tabelle `scuola_primo_grado`
 --
-ALTER TABLE `scuola`
+ALTER TABLE `scuola_primo_grado`
+  ADD PRIMARY KEY (`codice`);
+
+--
+-- Indici per le tabelle `scuola_secondo_grado`
+--
+ALTER TABLE `scuola_secondo_grado`
   ADD PRIMARY KEY (`codice`),
-  ADD KEY `fk_attivita_scuola` (`fk_attivita`) USING BTREE;
+  ADD KEY `fk_attivita_scuola_sec` (`fk_attivita`);
 
 --
 -- Indici per le tabelle `studente`
 --
 ALTER TABLE `studente`
   ADD PRIMARY KEY (`matricola`),
-  ADD KEY `fk_scuola_studente` (`fk_scuola`);
+  ADD KEY `fk_scuola_sec` (`fk_scuola`);
+
+--
+-- Indici per le tabelle `universita`
+--
+ALTER TABLE `universita`
+  ADD PRIMARY KEY (`codice`),
+  ADD KEY `fk_attivita_universita` (`fk_attivita`);
 
 --
 -- AUTO_INCREMENT per le tabelle scaricate
@@ -193,7 +247,7 @@ ALTER TABLE `azienda`
 --
 ALTER TABLE `iscrizione`
   ADD CONSTRAINT `fk_attivita_iscrizione` FOREIGN KEY (`fk_attivita`) REFERENCES `attivita` (`id_attivita`),
-  ADD CONSTRAINT `fk_matricola_studente` FOREIGN KEY (`fk_matricola`) REFERENCES `studente` (`matricola`);
+  ADD CONSTRAINT `fk_matricola_iscrizione` FOREIGN KEY (`fk_matricola`) REFERENCES `studente` (`matricola`);
 
 --
 -- Limiti per la tabella `responsabile`
@@ -202,16 +256,22 @@ ALTER TABLE `responsabile`
   ADD CONSTRAINT `fk_attivita_responsabile` FOREIGN KEY (`fk_attivita`) REFERENCES `attivita` (`id_attivita`);
 
 --
--- Limiti per la tabella `scuola`
+-- Limiti per la tabella `scuola_secondo_grado`
 --
-ALTER TABLE `scuola`
-  ADD CONSTRAINT `fk_attivita_scuola` FOREIGN KEY (`fk_attivita`) REFERENCES `attivita` (`id_attivita`) ON DELETE SET NULL ON UPDATE SET NULL;
+ALTER TABLE `scuola_secondo_grado`
+  ADD CONSTRAINT `fk_attivita_scuola_sec` FOREIGN KEY (`fk_attivita`) REFERENCES `attivita` (`id_attivita`);
 
 --
 -- Limiti per la tabella `studente`
 --
 ALTER TABLE `studente`
-  ADD CONSTRAINT `fk_scuola_studente` FOREIGN KEY (`fk_scuola`) REFERENCES `scuola` (`codice`);
+  ADD CONSTRAINT `fk_scuola_sec` FOREIGN KEY (`fk_scuola`) REFERENCES `scuola_secondo_grado` (`codice`);
+
+--
+-- Limiti per la tabella `universita`
+--
+ALTER TABLE `universita`
+  ADD CONSTRAINT `fk_attivita_universita` FOREIGN KEY (`fk_attivita`) REFERENCES `attivita` (`id_attivita`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
