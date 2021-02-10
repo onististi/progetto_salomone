@@ -88,97 +88,102 @@ if ($_GET['nav'] == 'scuola') {
     }
 } else if (($_GET['nav'] == 'home_scuola') && ($_SESSION["tipo_scuola"] == "scuola_secondo_grado")) {
     include '../components/checkDB.php';
-    if (alreadySubmitted($_SESSION["codice"])) {
-        echo "<nav class='navbar navbar-expand-lg navbar-dark navbar-custom fixed-top'>
-        <a class='navbar-brand logo-image' href='home_scuola_secondaria.php?nav=home_scuola'><img src='../assets/images/logo.png' alt='alternative'></a>
-        <h3 class='navbar-brand logo-text'>Home Scuola Secondaria</h3>
-        
-        <button class='navbar-toggler' type='button' data-toggle='collapse' data-target='#navbarsExampleDefault' aria-controls='navbarsExampleDefault' aria-expanded='false' aria-label='Toggle navigation'>
-            <span class='navbar-toggler-awesome fas fa-bars'></span>
-            <span class='navbar-toggler-awesome fas fa-times'></span>
-        </button>
-
-        <div class='collapse navbar-collapse' id='navbarsExampleDefault'>
-            <ul class='navbar-nav ml-auto'>
-                <li class='nav-item'>
-                    <a class='nav-link page-scroll' href='organize_stand.php?nav=home_scuola'>Organizza Attività</a>
-                </li>
-                <li class='nav-item'>
-                    <a class='nav-link page-scroll' href='register_students.php?nav=home_scuola' style='color:red;'>Studenti gia registrati</a>
-                </li>
-                <li class='nav-item'>
-                    <a class='nav-link page-scroll' href='../../index.php'>Logout</a>
-                </li>
-            </ul>
-        </div>
-    </nav>";
-    } else {
-        echo "<nav class='navbar navbar-expand-lg navbar-dark navbar-custom fixed-top'>
-        <a class='navbar-brand logo-image' href='home_scuola.php?nav=home_scuola'><img src='../assets/images/logo.png' alt='alternative'></a>
-        <h3 class='navbar-brand logo-text'>Home Scuola</h3>
-        
-        <button class='navbar-toggler' type='button' data-toggle='collapse' data-target='#navbarsExampleDefault' aria-controls='navbarsExampleDefault' aria-expanded='false' aria-label='Toggle navigation'>
-            <span class='navbar-toggler-awesome fas fa-bars'></span>
-            <span class='navbar-toggler-awesome fas fa-times'></span>
-        </button>
-
-        <div class='collapse navbar-collapse' id='navbarsExampleDefault'>
-            <ul class='navbar-nav ml-auto'>
-                <li class='nav-item'>
-                    <a class='nav-link page-scroll' href='organize_stand.php?nav=home_scuola'>Organizza Attività</a>
-                </li>
-                <li class='nav-item'>
-                    <a class='nav-link page-scroll' href='register_students.php?nav=home_scuola'>Registra Studenti</a>
-                </li>
-                <li class='nav-item'>
-                    <a class='nav-link page-scroll' href='../../index.php'>Logout</a>
-                </li>
-            </ul>
-        </div>
-    </nav>";
-    }
-} else if (($_GET['nav'] == 'home_scuola') && ($_SESSION["tipo_scuola"] == "universita")) {
     echo "<nav class='navbar navbar-expand-lg navbar-dark navbar-custom fixed-top'>
-        <a class='navbar-brand logo-image' href='home_universita.php?nav=home_scuola'><img src='../assets/images/logo.png' alt='alternative'></a>
-        <h3 class='navbar-brand logo-text'>Home Università</h3>
+                <a class='navbar-brand logo-image' href='home_scuola_secondaria.php?nav=home_scuola'><img src='../assets/images/logo.png' alt='alternative'></a>
+                <h3 class='navbar-brand logo-text'>Home Scuola Secondaria</h3>
         
-        <button class='navbar-toggler' type='button' data-toggle='collapse' data-target='#navbarsExampleDefault' aria-controls='navbarsExampleDefault' aria-expanded='false' aria-label='Toggle navigation'>
-            <span class='navbar-toggler-awesome fas fa-bars'></span>
-            <span class='navbar-toggler-awesome fas fa-times'></span>
-        </button>
+                <button class='navbar-toggler' type='button' data-toggle='collapse' data-target='#navbarsExampleDefault' aria-controls='navbarsExampleDefault' aria-expanded='false' aria-label='Toggle navigation'>
+                    <span class='navbar-toggler-awesome fas fa-bars'></span>
+                    <span class='navbar-toggler-awesome fas fa-times'></span>
+                </button>
 
-        <div class='collapse navbar-collapse' id='navbarsExampleDefault'>
-            <ul class='navbar-nav ml-auto'>
-                <li class='nav-item'>
-                    <a class='nav-link page-scroll' href='organize_stand.php?nav=home_scuola'>Organizza Attività</a>
+                <div class='collapse navbar-collapse' id='navbarsExampleDefault'>
+                    <ul class='navbar-nav ml-auto'>";
+
+    if (alreadyCreatedActivity($_SESSION["codice"], $_SESSION["tipo_scuola"])) {
+        echo "<li class='nav-item'>
+                        <a class='nav-link page-scroll' href='organize_stand.php?nav=home_scuola' style='color:green;'>Gestisci attivita</a>
+                    </li>";
+    } else {
+        echo "<li class='nav-item'>
+                        <a class='nav-link page-scroll' href='organize_stand.php?nav=home_scuola'>Organizza Attività</a>
+                    </li>";
+    }
+
+    if (alreadySubmitted($_SESSION["codice"])) {
+        echo "<li class='nav-item'>
+                        <a class='nav-link page-scroll' href='register_students.php?nav=home_scuola' style='color:red;'>Studenti gia registrati</a>
+                    </li>";
+    } else {
+        echo "<li class='nav-item'>
+                        <a class='nav-link page-scroll' href='register_students.php?nav=home_scuola'>Studenti gia registrati</a>
+                    </li>";
+    }
+    echo "<li class='nav-item'>
+                    <a class='nav-link page-scroll' href='../../index.php'>Logout</a>
                 </li>
-                <li class='nav-item'>
+            </ul>
+        </div>
+    </nav>";
+} else if (($_GET['nav'] == 'home_scuola') && ($_SESSION["tipo_scuola"] == "universita")) {
+    include '../components/checkDB.php';
+    echo "<nav class='navbar navbar-expand-lg navbar-dark navbar-custom fixed-top'>
+                <a class='navbar-brand logo-image' href='home_universita.php?nav=home_scuola'><img src='../assets/images/logo.png' alt='alternative'></a>
+                <h3 class='navbar-brand logo-text'>Home Università</h3>
+                
+                <button class='navbar-toggler' type='button' data-toggle='collapse' data-target='#navbarsExampleDefault' aria-controls='navbarsExampleDefault' aria-expanded='false' aria-label='Toggle navigation'>
+                    <span class='navbar-toggler-awesome fas fa-bars'></span>
+                    <span class='navbar-toggler-awesome fas fa-times'></span>
+                </button>
+
+                <div class='collapse navbar-collapse' id='navbarsExampleDefault'>
+                    <ul class='navbar-nav ml-auto'>";
+
+    if (alreadyCreatedActivity($_SESSION["codice"], $_SESSION["tipo_scuola"])) {
+        echo "<li class='nav-item'>
+                    <a class='nav-link page-scroll' href='organize_stand.php?nav=home_scuola' style='color:green;'>Gestisci attivita</a>
+                </li>";
+    } else {
+        echo "<li class='nav-item'>
+                    <a class='nav-link page-scroll' href='organize_stand.php?nav=home_scuola'>Organizza Attività</a>
+                </li>";
+    }
+
+    echo "<li class='nav-item'>
                     <a class='nav-link page-scroll' href='../../index.php'>Logout</a>
                 </li>
             </ul>
         </div>
     </nav>";
 } else if (($_GET['nav'] == 'home_scuola') && ($_SESSION["tipo_scuola"] == "azienda")) {
+    include '../components/checkDB.php';
     echo "<nav class='navbar navbar-expand-lg navbar-dark navbar-custom fixed-top'>
-    <a class='navbar-brand logo-image' href='home_azienda.php?nav=home_scuola'><img src='../assets/images/logo.png' alt='alternative'></a>
-    <h3 class='navbar-brand logo-text'>Home Azienda</h3>
-    
-    <button class='navbar-toggler' type='button' data-toggle='collapse' data-target='#navbarsExampleDefault' aria-controls='navbarsExampleDefault' aria-expanded='false' aria-label='Toggle navigation'>
-        <span class='navbar-toggler-awesome fas fa-bars'></span>
-        <span class='navbar-toggler-awesome fas fa-times'></span>
-    </button>
+                <a class='navbar-brand logo-image' href='home_azienda.php?nav=home_scuola'><img src='../assets/images/logo.png' alt='alternative'></a>
+                <h3 class='navbar-brand logo-text'>Home Azienda</h3>
+                
+                <button class='navbar-toggler' type='button' data-toggle='collapse' data-target='#navbarsExampleDefault' aria-controls='navbarsExampleDefault' aria-expanded='false' aria-label='Toggle navigation'>
+                    <span class='navbar-toggler-awesome fas fa-bars'></span>
+                    <span class='navbar-toggler-awesome fas fa-times'></span>
+                </button>
 
-    <div class='collapse navbar-collapse' id='navbarsExampleDefault'>
-        <ul class='navbar-nav ml-auto'>
-            <li class='nav-item'>
-                <a class='nav-link page-scroll' href='organize_stand.php?nav=home_scuola'>Organizza Attività</a>
-            </li>
-            <li class='nav-item'>
-                <a class='nav-link page-scroll' href='../../index.php'>Logout</a>
-            </li>
-        </ul>
-    </div>
-    </nav>";
+                <div class='collapse navbar-collapse' id='navbarsExampleDefault'>
+                    <ul class='navbar-nav ml-auto'>";
+    if (alreadyCreatedActivity($_SESSION["codice"], $_SESSION["tipo_scuola"])) {
+        echo "<li class='nav-item'>
+                        <a class='nav-link page-scroll' href='organize_stand.php?nav=home_scuola' style='color:green;'>Gestisci attivita</a>
+                    </li>";
+    } else {
+        echo "<li class='nav-item'>
+                        <a class='nav-link page-scroll' href='organize_stand.php?nav=home_scuola'>Organizza Attività</a>
+                    </li>";
+    }
+
+    echo "<li class='nav-item'>
+                        <a class='nav-link page-scroll' href='../../index.php'>Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>";
 } else if ($_GET['nav'] == 'home_studente') {
     echo "<nav class='navbar navbar-expand-lg navbar-dark navbar-custom fixed-top'>
                 <a class='navbar-brand logo-image' href='home_studente.php?nav=home_studente'><img src='../assets/images/logo.png' alt='alternative'></a>
