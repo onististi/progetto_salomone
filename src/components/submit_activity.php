@@ -2,11 +2,11 @@
 include '../config/connect_db.php';
 $success = true;
 
-if ($_SESSION["tipo_scuola"] == "scuola_secondo_grado") {
-    $date = "2021-11-12";
-} else if ($_SESSION["tipo_scuola"] == "universita" || $_SESSION["tipo_scuola"] == "azienda") {
-    $date = "2021-11-13";
-}
+// if ($_SESSION["tipo_scuola"] == "scuola_secondo_grado") {
+//     $date = "2021-11-12";
+// } else if ($_SESSION["tipo_scuola"] == "universita" || $_SESSION["tipo_scuola"] == "azienda") {
+//     $date = "2021-11-13";
+// }
 //$tmp_path = $_FILES['logo']['tmp_name'];
 $codiceMeccanografico = $_SESSION["codice"];
 //$pathToTheProject = "/opt/lampp/htdocs/WebSites/progetto_salomone/src"; //WARNING: CAMBIA PER OGNUNO DI NOI!!
@@ -17,6 +17,8 @@ $uploaded = move_uploaded_file($_FILES['logo']['tmp_name'], $destination);
 if ($uploaded) {
     //$query = "UPDATE attivita SET titolo = 'empty', descrizione = 'empty', logo ='empty', occupato = '0'"; //restore originals value
     $query = "UPDATE attivita SET titolo = '" . $_POST['titolo'] . "', descrizione = '" . $_POST['descrizione'] . "', logo ='" . $destination . "', occupato = '1' WHERE  id_attivita= '" . $_POST['id_attivita_ora'] . "' ";
+    //print_r($query);
+    //echo "<br><br>";
 
     if (!mysqli_query($conn, $query)) {    //if theres any problem
         echo "<center><p style='font-size: 2vw;'>Attivita: " . $_POST['titolo'] . " non registrata correttamente.</p><p style='font-size: 1vw;'>Error: " . mysqli_error($conn) . "</p></center>";
@@ -27,7 +29,7 @@ if ($uploaded) {
         //print_r($query2);
 
         if (!mysqli_query($conn, $query2)) {    //if theres any problem
-            echo "<center><p style='font-size: 2vw;'>Attivita: " . $_POST['titolo'] . " non registrata correttamente.</p><p style='font-size: 1vw;'>Error: " . mysqli_error($conn) . "</p></center>";
+            echo "<center><p style='font-size: 2vw;'>Attivita: " . $_POST['titolo'] . " non registrata correttamente.</p><p style='font-size: 1vw;'>Error2: " . mysqli_error($conn) . "</p></center>";
             $success = false;
             //$_SESSION["attivita_creata"] = "failed";
         }
