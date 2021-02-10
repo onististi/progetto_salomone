@@ -1,5 +1,6 @@
 <?php include '../config/connect_db.php';
 
+//query per prendere l'ora
 if ($_SESSION["tipo_scuola"] == "scuola_secondo_grado") {
     $date = "2021-11-12";
 } else if ($_SESSION["tipo_scuola"] == "universita" || $_SESSION["tipo_scuola"] == "azienda") {
@@ -15,6 +16,13 @@ while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) // solo numerico
     $ore[$c] = "<option value=" . $row['id_attivita'] . ">Attivita " . $row['id_attivita'] . ", Ore: " . $row['ora'] . "</option>";
     $c++;
 }
+
+//query per prendere i placeholder
+
+
+
+
+
 ?>
 
 <!DOCTYPE html>
@@ -24,7 +32,7 @@ while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) // solo numerico
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <title>Organizza Stand</title>
+    <title>Gestisci Stand</title>
 
     <link href="https://fonts.googleapis.com/css?family=Raleway:400,400i,600,700,700i&amp;subset=latin-ext" rel="stylesheet">
     <link href="../assets/css/bootstrap.css" rel="stylesheet">
@@ -47,19 +55,15 @@ while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) // solo numerico
                     <div class="card-body">
                         <form action="../components/submit_activity.php" method="POST" data-toggle="validator" data-focus="false" enctype="multipart/form-data">
                             <div class="form-group">
-                                <input type="text" class="form-control-input" id="titolo" name="titolo" placeholder="Titolo Attività" required>
+                                <input type="text" class="form-control-input" id="titolo" name="titolo" placeholder="Titolo Attività">
                                 <div class="help-block with-errors"></div>
                             </div>
 
                             <div class="form-group">
-                                <input accept="image/jpeg" type="file" class="form-control-input logo" name="logo" required>
+                                <input accept="image/jpeg" type="file" class="form-control-input logo" name="logo">
                                 <div class="help-block with-errors"></div>
                             </div>
 
-                            <!-- <div class="form-group">
-                                <input type="time" class="form-control-input" id="ora" name="ora" placeholder="Ora" required>
-                                <div class="help-block with-errors"></div>
-                            </div> -->
                             <div class="form-group">
                                 <select name="id_attivita_ora" class="form-control-input" id="id_attivita_ora">
                                     <option value="" disabled selected>Ora</option>
@@ -72,12 +76,17 @@ while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) // solo numerico
                             </div>
 
                             <div class="form-group">
-                                <textarea maxlength="256" class="form-control-input description" id="descrizione" name="descrizione" placeholder="Descrizione (max. 256)" required></textarea>
+                                <textarea maxlength="256" class="form-control-input description" id="descrizione" name="descrizione" placeholder="Descrizione (max. 256)"></textarea>
                                 <div class="help-block with-errors"></div>
                             </div>
 
                             <div class="button-wrapper">
-                                <input type="submit" class="btn-solid-reg page-scroll" value="CREA ATTIVITÀ">
+                                <input type="submit" class="btn-solid-reg page-scroll" value="MODIFICA ATTIVITÀ">
+                            </div>
+                        </form>
+                        <form action="../components/delete_activity.php" method="POST" data-toggle="validator" data-focus="false" enctype="multipart/form-data">
+                            <div class="button-wrapper-delete">
+                                <input type="submit" class="btn-solid-reg page-scroll" value="ELIMINA ATTIVITÀ">
                             </div>
                         </form>
                     </div>

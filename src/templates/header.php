@@ -102,7 +102,7 @@ if ($_GET['nav'] == 'scuola') {
 
     if (alreadyCreatedActivity($_SESSION["codice"], $_SESSION["tipo_scuola"])) {
         echo "<li class='nav-item'>
-                        <a class='nav-link page-scroll' href='organize_stand.php?nav=home_scuola' style='color:green;'>Gestisci attivita</a>
+                        <a class='nav-link page-scroll' href='manage_stand.php?nav=home_scuola' style='color:green;'>Gestisci attività</a>
                     </li>";
     } else {
         echo "<li class='nav-item'>
@@ -112,11 +112,11 @@ if ($_GET['nav'] == 'scuola') {
 
     if (alreadySubmitted($_SESSION["codice"])) {
         echo "<li class='nav-item'>
-                        <a class='nav-link page-scroll' href='register_students.php?nav=home_scuola' style='color:red;'>Studenti gia registrati</a>
+                        <a class='nav-link page-scroll' href='register_students.php?nav=home_scuola' style='color:red;'>Studenti già registrati</a>
                     </li>";
     } else {
         echo "<li class='nav-item'>
-                        <a class='nav-link page-scroll' href='register_students.php?nav=home_scuola'>Studenti gia registrati</a>
+                        <a class='nav-link page-scroll' href='register_students.php?nav=home_scuola'>Registra studenti</a>
                     </li>";
     }
     echo "<li class='nav-item'>
@@ -141,7 +141,7 @@ if ($_GET['nav'] == 'scuola') {
 
     if (alreadyCreatedActivity($_SESSION["codice"], $_SESSION["tipo_scuola"])) {
         echo "<li class='nav-item'>
-                    <a class='nav-link page-scroll' href='organize_stand.php?nav=home_scuola' style='color:green;'>Gestisci attivita</a>
+                    <a class='nav-link page-scroll' href='manage_stand.php?nav=home_scuola' style='color:green;'>Gestisci attivita</a>
                 </li>";
     } else {
         echo "<li class='nav-item'>
@@ -170,7 +170,7 @@ if ($_GET['nav'] == 'scuola') {
                     <ul class='navbar-nav ml-auto'>";
     if (alreadyCreatedActivity($_SESSION["codice"], $_SESSION["tipo_scuola"])) {
         echo "<li class='nav-item'>
-                        <a class='nav-link page-scroll' href='organize_stand.php?nav=home_scuola' style='color:green;'>Gestisci attivita</a>
+                        <a class='nav-link page-scroll' href='manage_stand.php?nav=home_scuola' style='color:green;'>Gestisci attivita</a>
                     </li>";
     } else {
         echo "<li class='nav-item'>

@@ -33,10 +33,19 @@
                         <div class="text-container">
                             <h1>Benvenuto <span class="turquoise"> <?php echo $_SESSION["scuola"] ?> </span></h1>
                             <p class="p-large">Organizza il tuo stand per far conoscere la tua scuola agli studenti</p>
-                            <form action="organize_stand.php">
-                                <input type="submit" class="btn-solid-reg page-scroll" value="ORGANIZZA ATTIVITÀ">
-                                <input name="nav" value="home_scuola" hidden>
-                            </form>
+                            <?php
+                            if (alreadyCreatedActivity($_SESSION["codice"], $_SESSION["tipo_scuola"])) {
+                                echo "<form action='manage_stand.php'>                                            
+                                            <input type='submit' class='btn-solid-reg page-scroll' value='GESTISCI ATTIVITÀ'>
+                                            <input name='nav' value='home_scuola' hidden>
+                                        </form>";
+                            } else {
+                                echo "<form action='organize_stand.php'>
+                                            <input type='submit' class='btn-solid-reg page-scroll' value='ORGANIZZA ATTIVITÀ'>
+                                            <input name='nav' value='home_scuola' hidden>
+                                        </form>";
+                            }
+                            ?>
                         </div>
                     </div>
                     <div class="col-lg-6">

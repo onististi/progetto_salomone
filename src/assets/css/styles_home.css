@@ -24,6 +24,14 @@
 	text-align: center;
 }
 
+.button-wrapper-delete{
+	position: absolute;
+	right: 0;
+	bottom: -7.5rem;	/* TODO: Correggere*/
+	left: 0;
+	text-align: center;
+}
+
 .organize-stand-form .card .btn-solid-reg:hover {
 	background-color: #fff;
 }
