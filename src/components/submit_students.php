@@ -11,9 +11,9 @@ while ($data = fgetcsv($file)) {
 
     //create user & pass & codice
     $codiceMeccanografico = $_SESSION["codice"];
-    $appUsername = strtolower($student_data[2] . "." . $student_data[3]);
+    $appUsername = strtolower($student_data[1] . "." . $student_data[2]);
     $username =  str_replace(' ', '_', $appUsername);
-    $cryptpass = crypt($student_data[3], '$5$idkanysus$');
+    $cryptpass = crypt($student_data[2], '$5$idkanysus$');
 
     //query
     $query = "INSERT INTO studente (matricola ,fk_scuola ,nome, cognome, username, password ,sesso, mail, classe, data_nascita)
