@@ -1,21 +1,4 @@
-<?php include '../config/connect_db.php';
-
-if ($_SESSION["tipo_scuola"] == "scuola_secondo_grado") {
-    $date = "2021-11-12";
-} else if ($_SESSION["tipo_scuola"] == "universita" || $_SESSION["tipo_scuola"] == "azienda") {
-    $date = "2021-11-13";
-}
-
-$query = "SELECT id_attivita, ora FROM attivita WHERE giorno = '$date' AND occupato=0 ";
-$result = mysqli_query($conn, $query) or die("Query fallita" . mysqli_error($conn) . " " . mysqli_error($conn));
-
-$c = 0;
-while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) // solo numerico
-{
-    $ore[$c] = "<option value=" . $row['id_attivita'] . ">Attivita " . $row['id_attivita'] . ", Ore: " . $row['ora'] . "</option>";
-    $c++;
-}
-?>
+<?php include '../config/connect_db.php';?>
 
 <!DOCTYPE html>
 <html lang="it">
@@ -45,30 +28,20 @@ while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) // solo numerico
             <div id="organize-stand-form" class="organize-stand-form">
                 <div class="card">
                     <div class="card-body">
-                        <form action="../components/submit_activity.php" method="POST" data-toggle="validator" data-focus="false" enctype="multipart/form-data">
+                        <form action="../components/submit_activity.php?action=create" method="POST" data-toggle="validator" data-focus="false" enctype="multipart/form-data">
                             <div class="form-group">
                                 <input type="text" class="form-control-input" id="titolo" name="titolo" placeholder="Titolo Attività" required>
                                 <div class="help-block with-errors"></div>
                             </div>
 
                             <div class="form-group">
-                                <input accept="image/jpeg" type="file" class="form-control-input logo" name="logo" required>
+                                <input accept="image/jpeg" type="file" class="form-control-input logo" name="logo" id="logo" required>
                                 <div class="help-block with-errors"></div>
                             </div>
 
-                            <!-- <div class="form-group">
-                                <input type="time" class="form-control-input" id="ora" name="ora" placeholder="Ora" required>
-                                <div class="help-block with-errors"></div>
-                            </div> -->
                             <div class="form-group">
-                                <select name="id_attivita_ora" class="form-control-input" id="id_attivita_ora">
-                                    <option value="" disabled selected>Ora</option>
-                                    <?php
-                                    foreach ($ore as &$value) {
-                                        echo $value;
-                                    }
-                                    ?>
-                                </select>
+                                <input type="time" class="form-control-input" id="ora" name="ora" placeholder="Ora" min="09:30" max="13:30" step="3600" required>
+                                <div class="help-block with-errors"></div>
                             </div>
 
                             <div class="form-group">

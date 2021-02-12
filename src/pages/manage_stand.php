@@ -1,22 +1,5 @@
 <?php include '../config/connect_db.php';
 
-//query per prendere l'ora
-// if ($_SESSION["tipo_scuola"] == "scuola_secondo_grado") {
-//     $date = "2021-11-12";
-// } else if ($_SESSION["tipo_scuola"] == "universita" || $_SESSION["tipo_scuola"] == "azienda") {
-//     $date = "2021-11-13";
-// }
-
-// $query = "SELECT id_attivita, ora FROM attivita WHERE giorno = '$date' AND occupato=0 ";
-// $result = mysqli_query($conn, $query) or die("Query fallita" . mysqli_error($conn) . " " . mysqli_error($conn));
-
-// $c = 0;
-// while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC))
-// {
-//     $ore[$c] = "<option value=" . $row['id_attivita'] . ">Attivita " . $row['id_attivita'] . ", Ore: " . $row['ora'] . "</option>";
-//     $c++;
-// }
-
 //query per prendere i placeholder
 $query2 = "SELECT id_attivita, titolo, descrizione, ora FROM attivita WHERE id_attivita=( SELECT fk_attivita FROM " . $_SESSION["tipo_scuola"] . " WHERE codice = '" . $_SESSION["codice"] . "' )";
 $result2 = mysqli_query($conn, $query2) or die("Query fallita" . mysqli_error($conn) . " " . mysqli_error($conn));
@@ -51,7 +34,7 @@ $row = mysqli_fetch_array($result2, MYSQLI_ASSOC);
             <div id="organize-stand-form" class="organize-stand-form">
                 <div class="card">
                     <div class="card-body">
-                        <form action="../components/submit_activity.php" method="POST" data-toggle="validator" data-focus="false" enctype="multipart/form-data">
+                        <form action="../components/submit_activity?action=manage.php" method="POST" data-toggle="validator" data-focus="false" enctype="multipart/form-data">
                             <div class="form-group">
                                 <input type="text" class="form-control-input" id="titolo" name="titolo" placeholder="<?php echo $row['titolo'] ?>">
                                 <div class="help-block with-errors"></div>
@@ -63,8 +46,8 @@ $row = mysqli_fetch_array($result2, MYSQLI_ASSOC);
                             </div>
 
                             <div class="form-group">
-                                <input type="time" name="id_attivita_ora" class="form-control-input" id="id_attivita_ora" value="<?php echo $row['ora'] ?>" readonly>
-                                <input type="hidden" name="id_attivita_ora" class="form-control-input" id="id_attivita_ora" value="<?php echo $row['id_attivita'] ?>" readonly>
+                                <input type="time" name="ora" class="form-control-input" id="ora" value="<?php echo $row['ora'] ?>" readonly>
+                                <input type="hidden" name="id_attivita" class="form-control-input" id="id_attivita" value="<?php echo $row['id_attivita'] ?>" readonly>
                                 <p>Per modificare l'orario cancella prima la prenotazione.</p>
                             </div>
 
