@@ -1,0 +1,3 @@
+submit_activity change document root
+check DB modify 2 line of connection
+connect_db change localhost

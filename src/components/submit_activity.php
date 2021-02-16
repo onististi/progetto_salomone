@@ -9,7 +9,8 @@ if ($_SESSION["tipo_scuola"] == "scuola_secondo_grado") {
 }
 
 $codiceMeccanografico = $_SESSION["codice"];
-$destination = $_SERVER['DOCUMENT_ROOT'] . '/WebSites/progetto_salomone/src/uploads/' . $codiceMeccanografico . ".jpeg"; //WARNING: CAMBIA PER OGNUNO DI NOI!! RIGA JACOPO
+$destination = $_SERVER['DOCUMENT_ROOT'] . 'html/Gruppo-Tedeschi-Guzzo-Fallara-Onisti/progetto_salomone/src/uploads' . $codiceMeccanografico . ".jpeg"; //WARNING: CAMBIA PER OGNUNO DI NOI!! RIGA JACOPO
+//$destination = $_SERVER['DOCUMENT_ROOT'] . '/WebSites/progetto_salomone/src/uploads/' . $codiceMeccanografico . ".jpeg"; //WARNING: CAMBIA PER OGNUNO DI NOI!! RIGA JACOPO
 $uploaded = move_uploaded_file($_FILES['logo']['tmp_name'], $destination);
 
 if ($uploaded) {
@@ -21,7 +22,7 @@ if ($uploaded) {
             echo "<center><p style='font-size: 2vw;'>Attivita: " . $_POST['titolo'] . " non registrata correttamente.</p><p style='font-size: 1vw;'>Error: " . mysqli_error($conn) . "</p></center>";
             $success = false;
         } else {
-            $query2="SELECT MAX(id_attivita) FROM attivita";
+            $query2 = "SELECT MAX(id_attivita) FROM attivita";
             $data = mysqli_fetch_array(mysqli_query($conn, $query2));
 
             $query3 = "UPDATE " . $_SESSION["tipo_scuola"] . " SET fk_attivita = '$data[0]' WHERE  codice= '" . $codiceMeccanografico . "' ";

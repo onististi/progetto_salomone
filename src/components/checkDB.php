@@ -3,9 +3,9 @@
 function alreadySubmitted($codice)
 {
     //! per database di fabio
-    // $conn = new mysqli('localhost','adminer','CBC349aa','Tedeschi_salone_orientamento');
+    $conn = new mysqli('localhost', 'adminer', 'CBC349aa', 'Tedeschi_salone_orientamento');
 
-    $conn = new mysqli('localhost', 'root', '', 'salone_orientamento'); //HO TOLTO CONNECT.PHP PER COLPA DELLE SESSIONI UFFI
+    //$conn = new mysqli('localhost', 'root', '', 'salone_orientamento'); //HO TOLTO CONNECT.PHP PER COLPA DELLE SESSIONI UFFI
 
     if ($conn->connect_errno) {
         echo "<h1 style='color:red> CONNESSIONE AL DATABASE FALLITA! </h1>";
@@ -25,9 +25,9 @@ function alreadySubmitted($codice)
 function alreadyCreatedActivity($codice, $tipo_scuola)
 {
     //! per database di fabio
-    // $conn = new mysqli('localhost','adminer','CBC349aa','Tedeschi_salone_orientamento');
+    $conn = new mysqli('localhost', 'adminer', 'CBC349aa', 'Tedeschi_salone_orientamento');
 
-    $conn = new mysqli('localhost', 'root', '', 'salone_orientamento'); //HO TOLTO CONNECT.PHP PER COLPA DELLE SESSIONI UFFI
+    //$conn = new mysqli('localhost', 'root', '', 'salone_orientamento'); //HO TOLTO CONNECT.PHP PER COLPA DELLE SESSIONI UFFI
 
     if ($conn->connect_errno) {
         echo "<h1 style='color:red> CONNESSIONE AL DATABASE FALLITA! </h1>";
