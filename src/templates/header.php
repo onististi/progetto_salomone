@@ -172,10 +172,10 @@ if ($_GET['nav'] == 'scuola') {
                 <div class='collapse navbar-collapse' id='navbarsExampleDefault'>
                     <ul class='navbar-nav ml-auto'>
                         <li class='nav-item'>
-                            <a class='nav-link page-scroll' href=''>Programma</a>
+                            <a class='nav-link page-scroll' href='program.php?nav=home_studente'>Programma</a>
                         </li>
                         <li class='nav-item'>
-                            <a class='nav-link page-scroll' href=''>Iscrizione Attività</a>
+                            <a class='nav-link page-scroll' href='activity_subscription.php?nav=home_studente'>Iscrizione Attività</a>
                         </li>
                         <li class='nav-item'>
                             <a class='nav-link page-scroll' href='../../index.php'>Logout</a>
