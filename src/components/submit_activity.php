@@ -1,6 +1,7 @@
 <?php
 include '../config/connect_db.php';
 $success = true;
+$valid=true;
 
 $codiceMeccanografico = $_SESSION["codice"];
 
@@ -18,9 +19,11 @@ while ($row = mysqli_fetch_array($result, MYSQLI_NUM)) {
         confirm('Ora gia occupata');
         window.location.href = '../pages/organize_stand.php';
         </script>";
+        $valid=false;
     }
 }
 
+if($valid){
 //$destination = $_SERVER['DOCUMENT_ROOT'] . 'html/Gruppo-Tedeschi-Guzzo-Fallara-Onisti/progetto_salomone/src/uploads' . $codiceMeccanografico . ".jpeg"; //WARNING: CAMBIA PER OGNUNO DI NOI!! RIGA JACOPO
 $destination = $_SERVER['DOCUMENT_ROOT'] . '/WebSites/progetto_salomone/src/uploads/' . $codiceMeccanografico . ".jpeg"; //WARNING: CAMBIA PER OGNUNO DI NOI!! RIGA JACOPO
 $uploaded = move_uploaded_file($_FILES['logo']['tmp_name'], $destination);
@@ -47,6 +50,9 @@ if ($uploaded) {
     } else if ($_GET['action'] == "manage") {
         $attivita = $_POST['id_attivita'];
         $query = "UPDATE attivita SET titolo = '" . $_POST['titolo'] . "', descrizione = '" . $_POST['descrizione'] . "', logo ='$destination' WHERE  id_attivita= '$attivita' ";
+        if (!mysqli_query($conn, $query)) {
+            $success = false;
+        }
     }
 } else {
     echo "<center><p style='font-size: 2vw;'>Logo non spostato correttamente.</p></center>";
@@ -58,3 +64,4 @@ if ($success) {    //if success
     echo "Registrata correttamente ";
 }
 echo "<a href='../../index.php'>Esci</a>";
+}

@@ -1,7 +1,10 @@
 <?php include '../config/connect_db.php';
 
+$id_att = $_POST['standChoosen'];
+
 //query per prendere i placeholder
-$query2 = "SELECT id_attivita, titolo, descrizione, ora FROM attivita WHERE id_attivita=( SELECT fk_attivita FROM " . $_SESSION["tipo_scuola"] . " WHERE codice = '" . $_SESSION["codice"] . "' )";
+//$query2 = "SELECT id_attivita, titolo, descrizione, ora FROM attivita WHERE id_attivita=( SELECT id_attivita FROM registra_attivita WHERE id_" . $_SESSION["tipo_scuola"] . "='$codice')";
+$query2 = "SELECT id_attivita, titolo, descrizione, ora FROM attivita WHERE id_attivita='$id_att'";
 $result2 = mysqli_query($conn, $query2) or die("Query fallita" . mysqli_error($conn) . " " . mysqli_error($conn));
 $row = mysqli_fetch_array($result2, MYSQLI_ASSOC);
 ?>
@@ -34,7 +37,7 @@ $row = mysqli_fetch_array($result2, MYSQLI_ASSOC);
             <div id="organize-stand-form" class="organize-stand-form">
                 <div class="card">
                     <div class="card-body">
-                        <form action="../components/submit_activity?action=manage.php" method="POST" data-toggle="validator" data-focus="false" enctype="multipart/form-data">
+                        <form action="../components/submit_activity.php?action=manage" method="POST" data-toggle="validator" data-focus="false" enctype="multipart/form-data">
                             <div class="form-group">
                                 <input type="text" class="form-control-input" id="titolo" name="titolo" placeholder="<?php echo $row['titolo'] ?>">
                                 <div class="help-block with-errors"></div>
