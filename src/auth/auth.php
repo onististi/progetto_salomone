@@ -28,17 +28,18 @@ if ((isset($_POST["username"])) && (isset($_POST["password"]))) {
     $password = htmlspecialchars($_POST["password"]);
     $cryptpass = crypt($password, '$5$idkanysus$');
 
-    $query = "SELECT username, password FROM studente WHERE username = '" . $username . "' AND password = '" . $cryptpass . "'";
+    $query = "SELECT username, matricola, password FROM studente WHERE username = '" . $username . "' AND password = '" . $cryptpass . "'";
 
     $result = mysqli_query($conn, $query);
     $data = mysqli_fetch_array($result);
 
     if (mysqli_num_rows($result) > 0) {
         $_SESSION["utente"] = $data["username"];
+        $_SESSION["matricola"] = $data["matricola"];
         header("Location: ../pages/home_studente.php?nav=home_studente");
     } else {
         mysqli_close($conn);
-        header("Location: login_studente.php");
+        header("Location: login_studente.php?nav=home_studente");
     }
 }
 

@@ -46,7 +46,7 @@
                     </tr>
                 </thead>
                 <tbody>
-        ";
+            ";
 
             while ($row = mysqli_fetch_array($result, MYSQLI_NUM)) // solo numerico
             {
@@ -70,9 +70,8 @@
             echo "
                 </tbody>
             </table>
-        ";
+            ";
             ?>
-
         </div>
     </header>
 
