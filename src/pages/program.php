@@ -1,4 +1,10 @@
-<?php include '../config/connect_db.php'; ?>
+<?php include '../config/connect_db.php'; 
+
+$sql ="SELECT attivita.* FROM iscrizione JOIN studente on studente.matricola = iscrizione.fk_matricola JOIN attivita on iscrizione.fk_attivita = attivita.id_attivita WHERE studente.username="."'".$_SESSION['utente']."'";
+$result =$conn->query($sql);
+$row = $result->fetch_assoc();
+
+?>
 
 <!DOCTYPE html>
 <html lang="it">
@@ -23,9 +29,14 @@
 <body data-spy="scroll" data-target=".fixed-top">
     <?php
     include '../templates/header.php';
-    ?>
 
-    <?php
+    foreach($row as $nome =>  $val){
+        if($nome == "titolo"){
+            echo"<h4>".$val."<h4>";
+        }else
+        
+    }
+
     include '../templates/footer.html';
     ?>
 
