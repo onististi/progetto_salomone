@@ -24,7 +24,7 @@
     <?php
 
     if(!isset($_SESSION['utente']))
-        header('location: ../../index.php');
+        header('location: ../../index.php?p=0');
 
     include '../templates/header.php';
     ?>

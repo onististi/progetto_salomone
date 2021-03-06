@@ -3,6 +3,7 @@
 include "../config/connect_db.php";
 
 if ((isset($_POST["codice_scuola"])) && (isset($_POST["password"]))) {
+    unset($_SESSION['utente']);
     $codice_scuola = htmlspecialchars($_POST["codice_scuola"]);
     $password = htmlspecialchars($_POST["password"]);
 
@@ -22,9 +23,8 @@ if ((isset($_POST["codice_scuola"])) && (isset($_POST["password"]))) {
         $_SESSION["tipo_scuola"] = "azienda";
         header("Location: ../pages/home_azienda.php?nav=home_scuola");
 
-    } else {
-        header("Location: login_scuola.php?nav=scuola");
-    }
+    } else 
+        header("Location: login_scuola.php?nav=scuola");   
 }
 
 if ((isset($_POST["username"])) && (isset($_POST["password"]))) {

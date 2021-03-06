@@ -28,7 +28,7 @@ $result =$conn->query($sql);
     <div class="header-content">
         <div class="container">
 
-        <form action="presentation.php" method="post">
+        <form action="presentation.php?nav=presentation" method="POST">
 
         <?php while ($row = $result->fetch_assoc()){ ?>
               <div class="courses-container">

@@ -3,14 +3,13 @@
 //     echo $_SESSION['tipo_scuola'];
 //  if(isset($_SESSION['utente']))
 //     echo $_SESSION['utente'];
-
+   include '../components/checkDB.php';
    echo "<nav class='navbar navbar-expand-lg navbar-dark navbar-custom fixed-top'>
             <a class='navbar-brand logo-image' href='../../index.php'><img src='../assets/images/logo.png' alt='alternative'></a>
             <h3 class='navbar-brand logo-text'>";    //</h3>
 
 if(isset($_GET['nav'])){
       $get = $_GET['nav']; 
-
    if( $get == 'scuola')
       echo'Login Scuola';
    else if( $get == 'studente')
@@ -19,7 +18,9 @@ if(isset($_GET['nav'])){
       echo'Home Scuola';
    else if( $get == 'home_studente')
       echo'Home Studente';   
-          
+   else if($get == 'presentation')
+      echo 'Presentazione attività';
+      
    echo"</h3>
       <button class='navbar-toggler' type='button' data-toggle='collapse' data-target='#navbarsExampleDefault' 
       aria-controls='navbarsExampleDefault' aria-expanded='false' aria-label='Toggle navigation'>

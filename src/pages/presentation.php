@@ -14,17 +14,13 @@ include '../config/connect_db.php';
     <link href="../assets/css/magnific-popup.css" rel="stylesheet">
     <link href="../assets/css/styles.css" rel="stylesheet">
     <link rel="icon" href="../assets/images/favicon.png">
-    <link rel="icon" href="../assets/images/logo.png">
     <script src="../assets/js/jquery.min.js"></script>
     <script src="../assets/js/bootstrap.min.js"></script>
     <script src="../assets/js/scripts.js"></script>
-
-    <script defer src="http://localhost:3000/socket.io/socket.io.js"></script>
-    <script defer src="../../script.js"></script>
    <title>Presentazione</title>
 </head>
-<body>
-<?php include "../templates/header.html"; ?>
+<body data-spy="scroll" data-target=".fixed-top">
+<?php include '../templates/header.php'; ?>
 
     <header id="header" class="header">
         <div class="header-content">

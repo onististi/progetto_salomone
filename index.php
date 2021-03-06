@@ -1,8 +1,8 @@
 <?php
 
- if(session_status() == PHP_SESSION_NONE){
+if(session_status() == PHP_SESSION_NONE)
     @session_start();
- }
+ 
 if(isset($_GET['l'])) //logout jacopino
     session_destroy();
 ?>

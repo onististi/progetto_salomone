@@ -1,9 +1,9 @@
 <?php 
-
+include '../config/connect_db.php';
 if($_SESSION['tipo_scuola'] != "azienda")
     header('location: ../../index.php');
 
-include '../config/connect_db.php'; ?>
+ ?>
 
 <!DOCTYPE html>
 <html lang="it">
