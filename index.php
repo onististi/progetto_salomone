@@ -1,13 +1,10 @@
 <?php
-session_start();
-echo $_SESSION['tipo_scuola'];
-// if(session_status() == PHP_SESSION_NONE){
-//    @session_start();
-// }
+
+ if(session_status() == PHP_SESSION_NONE){
+    @session_start();
+ }
 if(isset($_GET['l'])) //logout jacopino
     session_destroy();
-
-include 'src/config/connect_db.php';
 ?>
 
 <!DOCTYPE html>
