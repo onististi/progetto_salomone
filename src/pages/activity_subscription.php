@@ -1,4 +1,21 @@
-<?php include '../config/connect_db.php'; ?>
+<?php include '../config/connect_db.php'; 
+
+if(isset($_GET['sub'])){
+    $id_A = $_POST['standChoosen'];
+
+    $sql = "SELECT matricola FROM studente WHERE username = "."'".$_SESSION['utente']."'";
+    $result = $conn->query($sql);
+    $row = $result->fetch_assoc();
+    $matricola = $row['matricola'];
+
+    $k = $_POST['standChoosen'];
+    $sql = "INSERT INTO iscrizione(fk_matricola,fk_attivita) VALUES ('$matricola','$k')";
+    $resultt = $conn->query($sql);
+    header("location: activity_subscription.php?nav=home_studente");
+}
+
+
+?>
 
 <!DOCTYPE html>
 <html lang="it">
@@ -28,6 +45,7 @@
     <header id="header" class="header">
         <div class="header-content">
         <?php
+        if(isset($_SESSION['codice']))
             $codiceMeccanografico = $_SESSION["codice"];
 
             // connesione al DBMS
@@ -55,7 +73,7 @@
             {
                 //$_SESSION['standChoosen'] = $row[0];
                 echo "
-                <form method='post' action='../components/subscription.php?nav=home_scuola'>
+                <form method='post' action='activity_subscription.php?nav=home_scuola&sub'>
                 <tr>
                     <td> $row[0] </td>
                     <td> $row[1] </td>
