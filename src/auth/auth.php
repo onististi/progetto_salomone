@@ -21,35 +21,25 @@ if ((isset($_POST["codice_scuola"])) && (isset($_POST["password"]))) {
     } else {
         header("Location: login_scuola.php?nav=scuola");
     }
-
-    // //$data = mysqli_fetch_array($result);
-
-    // if (mysqli_num_rows($result) > 0) {
-    //     // $_SESSION["codice"] = $data["codice"];
-    //     // $_SESSION["scuola"] = $data["nome"];
-    //     //$_SESSION["tipo_scuola"] = $data["tipo"];
-    //     header("Location: ../pages/home_scuola.php?nav=home_scuola");
-    // } else {
-    //     mysqli_close($conn);
-    //     header("Location: login_scuola.php");
-    // }
 }
 
 if ((isset($_POST["username"])) && (isset($_POST["password"]))) {
     $username = htmlspecialchars($_POST["username"]);
     $password = htmlspecialchars($_POST["password"]);
+    $cryptpass = crypt($password, '$5$idkanysus$');
 
-    $query = "SELECT username, password FROM studente WHERE username = '" . $username . "' AND password = '" . $password . "'";
+    $query = "SELECT username, matricola, password FROM studente WHERE username = '" . $username . "' AND password = '" . $cryptpass . "'";
 
     $result = mysqli_query($conn, $query);
     $data = mysqli_fetch_array($result);
 
     if (mysqli_num_rows($result) > 0) {
         $_SESSION["utente"] = $data["username"];
+        $_SESSION["matricola"] = $data["matricola"];
         header("Location: ../pages/home_studente.php?nav=home_studente");
     } else {
         mysqli_close($conn);
-        header("Location: login_studente.php");
+        header("Location: login_studente.php?nav=home_studente");
     }
 }
 
