@@ -38,11 +38,11 @@ if(isset($_GET['nav'])){
             
    
    if($get== 'scuola')
-      $m.'Login Studente';
+      $m.='Login Studente';
    if ($get== 'studente')
-      $m.'Login Scuola';
+      $m.='Login Scuola';
    if($get== 'home_studente'){
-      $m = $m.'<a class="nav-link page-scroll" href="program.php?nav=home_studente">Programma</a> <li class="nav-item">
+      $m .='<a class="nav-link page-scroll" href="program.php?nav=home_studente">Programma</a> <li class="nav-item">
                         <a class="nav-link page-scroll" href="activity_subscription.php?nav=home_studente">Iscrizione Attività</a>
                      </li>';
    }            
