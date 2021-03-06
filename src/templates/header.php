@@ -20,7 +20,7 @@ if(isset($_GET['nav'])){
       echo'Home Studente';   
    else if($get == 'presentation')
       echo 'Presentazione attività';
-      
+
    echo"</h3>
       <button class='navbar-toggler' type='button' data-toggle='collapse' data-target='#navbarsExampleDefault' 
       aria-controls='navbarsExampleDefault' aria-expanded='false' aria-label='Toggle navigation'>
@@ -36,7 +36,6 @@ if(isset($_GET['nav'])){
    $m = "<a class='nav-link page-scroll' href='../../index.php'>Home</a>
          </li>
          <li class='nav-item'>";
-            
    
    if($get== 'scuola')
       $m.="<a class='nav-link page-scroll' href='login_studente.php?nav=scuola'>Login Studente</a>";
