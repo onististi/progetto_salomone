@@ -39,13 +39,13 @@ if(isset($_GET['nav'])){
    
    if($get== 'scuola')
       $m.'Login Studente';
-   else if ($get== 'studente')
+   if ($get== 'studente')
       $m.'Login Scuola';
-   else if($get == 'home_studente')
-      $m."Programma <li class='nav-item'>
-                        <a class='nav-link page-scroll' href='activity_subscription.php?nav=home_studente'>Iscrizione Attività</a>
-                     </li>";
-                     
+   if($get== 'home_studente'){
+      $m = $m.'<a class="nav-link page-scroll" href="program.php?nav=home_studente">Programma</a> <li class="nav-item">
+                        <a class="nav-link page-scroll" href="activity_subscription.php?nav=home_studente">Iscrizione Attività</a>
+                     </li>';
+   }            
       
    if($get == 'scuola' || $get == 'studente' || $get == 'home_studente')
       echo $m;
