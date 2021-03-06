@@ -1,0 +1,66 @@
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+.col-md-auto{
+   background-color:white;
+   margin-right:0%;
+   text-align:center;
+}
+video{
+   flex:left;
+   padding-left: 20px;
+}
+
+.coll{
+   padding-left: 20px;
+   float: left;
+  width: 80%;
+}
+
+.chat{
+   width:20%;
+   padding-left:20px;
+   padding-right: 0%;
+}
+
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-track {
+  width: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+  width: 1em;
+  background-color: #ddd;
+  outline: 1px solid slategrey;
+  border-radius: 1rem;
+}
+
+.text-small {
+  font-size: 0.9rem;
+}
+
+.messages-box,
+.chat-box {
+  height: 510px;
+  overflow-y: scroll;
+}
+
+.rounded-lg {
+  border-radius: 0.5rem;
+}
+
+input::placeholder {
+  font-size: 0.9rem;
+  color: #999;
+}

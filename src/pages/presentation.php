@@ -1,12 +1,5 @@
 <?php 
 include '../config/connect_db.php';
-
-$sql ="SELECT * FROM iscrizione JOIN studente on studente.matricola = iscrizione.fk_matricola WHERE studente.username="."'".$_SESSION['utente']."'";
-
-$result =$conn->query($sql);
-$row = $result->fetch_assoc();
-
-include "../templates/header.html";
 ?>
 
 <html lang="en">
@@ -17,61 +10,77 @@ include "../templates/header.html";
        <link href="https://fonts.googleapis.com/css?family=Raleway:400,400i,600,700,700i&amp;subset=latin-ext" rel="stylesheet">
     <link href="../assets/css/bootstrap.css" rel="stylesheet">
     <link href="../assets/css/fontawesome-all.css" rel="stylesheet">
-    <link href="../assets/css/swiper.css" rel="stylesheet">
+    <link href="../assets/css/presentation.css" rel="stylesheet">
     <link href="../assets/css/magnific-popup.css" rel="stylesheet">
     <link href="../assets/css/styles.css" rel="stylesheet">
-    <link href="../assets/css/styles_home.css" rel="stylesheet">
     <link rel="icon" href="../assets/images/favicon.png">
-     <script src="../assets/js/jquery.min.js"></script>
-    <script src="../assets/js/popper.min.js"></script>
+    <link rel="icon" href="../assets/images/logo.png">
+    <script src="../assets/js/jquery.min.js"></script>
     <script src="../assets/js/bootstrap.min.js"></script>
-    <script src="../assets/js/jquery.easing.min.js"></script>
-    <script src="../assets/js/swiper.min.js"></script>
-    <script src="../assets/js/jquery.magnific-popup.js"></script>
-    <script src="../assets/js/validator.min.js"></script>
     <script src="../assets/js/scripts.js"></script>
+
+    <script defer src="http://localhost:3000/socket.io/socket.io.js"></script>
+    <script defer src="../../script.js"></script>
    <title>Presentazione</title>
-<style>
-
-.chat{background-color:black;}
-
-/* Clear floats after the columns */
-.row:after {
-  content: "";
-  display: table;
-  clear: both;
-}
-.col-md-auto{
-   background-color:white;
-   margin-right:0%;
-   text-align:center;
-}
-video{
-   flex:left;
-}
-</style>
 </head>
-<body data-spy="scroll" data-target=".fixed-top">
+<body>
+<?php include "../templates/header.html"; ?>
 
     <header id="header" class="header">
         <div class="header-content">
-            <div class="container">
                 <div class="row">
-                    <div class="col">
-
-                     <video width="1000" height="800" controls>
+                    <div class="coll">
+                     <video width="100%" height="700" controls>
                         <source src="" type="video/mp4">
                       </video> 
 
                     </div>
-                    <div class="col-md-auto chat">
+                    <div class="chat">
+                       
+                     <!-- Chat Box-->
+                            <div class="col-10 px-0">
+                            <div class="px-6 py-4 chat-box bg-white">
+                                <!-- Sender Message-->
+                                <div class="media w-50 mb-3">
+                                <div class="media-body ml-3">
+                                    <div class="bg-light rounded py-2 px-3 mb-2">
+                                    <p class="text-small mb-0 text-muted">Test which is a new approach all solutions</p>
+                                    </div>
+                                    <p class="small text-muted">12:00  | giorno 13</p>
+                                </div>
+                                </div>
 
-                       kkdskdsk
+                                <!-- Reciever Message-->
+                                <div class="media w-50 ml-auto mb-3">
+                                <div class="media-body">
+                                    <div class="bg-primary rounded py-2 px-3 mb-2">
+                                    <p class="text-small mb-0 text-white">Negro negro</p>
+                                    </div>
+                                    <p class="small text-muted">12:00 | giorno 13</p>
+                                </div>
+                                </div>
 
+                            </div>
+
+                            <!-- Typing area -->
+                            <form action="#" class="bg-light" id="send-container">
+                                <div class="input-group">
+                                <input type="text" autofocus placeholder="Type a message" aria-describedby="button-addon2" id="message-input" class="form-control rounded-0 border-0 py-4 bg-light">
+                                <div class="input-group-append">
+                                    <button id="send-button" type="submit" class="btn btn-link" value="send"> <i class="fa fa-paper-plane"></i></button>
+                                </div>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
+    </div>
+</div>
+<script>
+
+
+
+</script>
+
 </body>
 </html>

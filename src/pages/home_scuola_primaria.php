@@ -1,4 +1,10 @@
-<?php include '../config/connect_db.php'; ?>
+<?php 
+include '../config/connect_db.php'; 
+
+if($_SESSION['tipo_scuola'] != "scuola_primo_grado")
+    header('location: ../../index.php?');
+
+?>
 
 <!DOCTYPE html>
 <html lang="it">

@@ -1,5 +1,13 @@
 <?php
-if ($_GET['nav'] == 'scuola') {
+
+if(isset($_SESSION['tipo_scuola']))
+    echo $_SESSION['tipo_scuola'];
+ if(isset($_SESSION['utente']))
+    echo $_SESSION['utente'];
+if(isset($_SESSION['nav']))
+    echo $_SESSION['nav'];
+
+if ($_GET['nav'] == 'scuola') {     //!fatto
     echo "<nav class='navbar navbar-expand-lg navbar-dark navbar-custom fixed-top'>
                 <a class='navbar-brand logo-image' href='../../index.php'><img src='../assets/images/logo.png' alt='alternative'></a>
                 <h3 class='navbar-brand logo-text'>Login Scuola</h3>
@@ -19,7 +27,7 @@ if ($_GET['nav'] == 'scuola') {
                     </ul>
                 </div>
             </nav>";
-} else if ($_GET['nav'] == 'studente') {
+} else if ($_GET['nav'] == 'studente') { //!fatto
     echo "<nav class='navbar navbar-expand-lg navbar-dark navbar-custom fixed-top'>
                 <a class='navbar-brand logo-image' href='../../index.php'><img src='../assets/images/logo.png' alt='alternative'></a>
                 <h3 class='navbar-brand logo-text'>Login Studente</h3>
@@ -39,7 +47,7 @@ if ($_GET['nav'] == 'scuola') {
                     </ul>
                 </div>
             </nav>";
-} else if (($_GET['nav'] == 'home_scuola') && ($_SESSION["tipo_scuola"] == "scuola_primo_grado")) {
+} else if (($_GET['nav'] == 'home_scuola') && ($_SESSION["tipo_scuola"] == "scuola_primo_grado")) { //!fatta
     include '../components/checkDB.php';
 
     echo "<nav class='navbar navbar-expand-lg navbar-dark navbar-custom fixed-top'>
@@ -60,7 +68,7 @@ if ($_GET['nav'] == 'scuola') {
     }
     "</li>
             <li class='nav-item'>
-                <a class='nav-link page-scroll' href='../../index.php'>Logout</a>
+                <a class='nav-link page-scroll' href='../../index.php?l'>Logout</a>
             </li>
         </ul>
     </div>
@@ -98,13 +106,13 @@ if ($_GET['nav'] == 'scuola') {
                     </li>";
     }
     echo "<li class='nav-item'>
-                    <a class='nav-link page-scroll' href='../../index.php'>Logout</a>
+                    <a class='nav-link page-scroll' href='../../index.php?l'>Logout</a>
                 </li>
             </ul>
         </div>
     </nav>";
     //////////////////////////////////////////////
-} else if (($_GET['nav'] == 'home_scuola') && ($_SESSION["tipo_scuola"] == "universita")) {
+} else if (($_GET['nav'] == 'home_scuola') && ($_SESSION["tipo_scuola"] == "universita")) { //!fattta
     include '../components/checkDB.php';
     echo "<nav class='navbar navbar-expand-lg navbar-dark navbar-custom fixed-top'>
                 <a class='navbar-brand logo-image' href='home_universita.php?nav=home_scuola'><img src='../assets/images/logo.png' alt='alternative'></a>
@@ -119,20 +127,22 @@ if ($_GET['nav'] == 'scuola') {
 
     if (alreadyCreatedActivity($_SESSION["codice"], $_SESSION["tipo_scuola"])) {
         echo "<li class='nav-item'>
-                                        <a class='nav-link page-scroll' href='choose_stand_to_manage.php?nav=home_scuola'>Gestisci attività</a>
+            <a class='nav-link page-scroll' href='choose_stand_to_manage.php?nav=home_scuola'>Gestisci attività</a>
                                     </li>";
     }
     echo "<li class='nav-item'>
-                                        <a class='nav-link page-scroll' href='organize_stand.php?nav=home_scuola'>Organizza Attività</a>
-                                    </li>";
+            <a class='nav-link page-scroll' href='organize_stand.php?nav=home_scuola'>Organizza Attività</a>
+            </li>";
 
     echo "<li class='nav-item'>
-                    <a class='nav-link page-scroll' href='../../index.php'>Logout</a>
+                    <a class='nav-link page-scroll' href='../../index.php?l'>Logout</a>
                 </li>
             </ul>
         </div>
     </nav>";
-} else if (($_GET['nav'] == 'home_scuola') && ($_SESSION["tipo_scuola"] == "azienda")) {
+
+
+} else if (($_GET['nav'] == 'home_scuola') && ($_SESSION["tipo_scuola"] == "azienda")) { //!fatta
     include '../components/checkDB.php';
     echo "<nav class='navbar navbar-expand-lg navbar-dark navbar-custom fixed-top'>
                 <a class='navbar-brand logo-image' href='home_azienda.php?nav=home_scuola'><img src='../assets/images/logo.png' alt='alternative'></a>
@@ -151,16 +161,18 @@ if ($_GET['nav'] == 'scuola') {
                                     </li>";
     }
     echo "<li class='nav-item'>
-                                        <a class='nav-link page-scroll' href='organize_stand.php?nav=home_scuola'>Organizza Attività</a>
-                                    </li>";
+            <a class='nav-link page-scroll' href='organize_stand.php?nav=home_scuola'>Organizza Attività</a>
+        </li>";
 
     echo "<li class='nav-item'>
-                        <a class='nav-link page-scroll' href='../../index.php'>Logout</a>
+                        <a class='nav-link page-scroll' href='../../index.php?l'>Logout</a>
                     </li>
                 </ul>
             </div>
         </nav>";
-} else if ($_GET['nav'] == 'home_studente') {
+
+        
+} else if ($_GET['nav'] == 'home_studente') { //!fatto
     echo "<nav class='navbar navbar-expand-lg navbar-dark navbar-custom fixed-top'>
                 <a class='navbar-brand logo-image' href='home_studente.php?nav=home_studente'><img src='../assets/images/logo.png' alt='alternative'></a>
                 <h3 class='navbar-brand logo-text'>Home Studente</h3>
@@ -178,7 +190,7 @@ if ($_GET['nav'] == 'scuola') {
                             <a class='nav-link page-scroll' href='activity_subscription.php?nav=home_studente'>Iscrizione Attività</a>
                         </li>
                         <li class='nav-item'>
-                            <a class='nav-link page-scroll' href='../../index.php'>Logout</a>
+                            <a class='nav-link page-scroll' href='../../index.php?l'>Logout</a>
                         </li>
                     </ul>
                 </div>

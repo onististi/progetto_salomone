@@ -9,15 +9,19 @@ if ((isset($_POST["codice_scuola"])) && (isset($_POST["password"]))) {
     if (checkLogin("scuola_primo_grado", $codice_scuola,  $password, $conn)) {
         $_SESSION["tipo_scuola"] = "scuola_primo_grado";
         header("Location: ../pages/home_scuola_primaria.php?nav=home_scuola");
+
     } else if (checkLogin("scuola_secondo_grado", $codice_scuola,  $password, $conn)) {
         $_SESSION["tipo_scuola"] = "scuola_secondo_grado";
         header("Location: ../pages/home_scuola_secondaria.php?nav=home_scuola");
+
     } else if (checkLogin("universita", $codice_scuola,  $password, $conn)) {
         $_SESSION["tipo_scuola"] = "universita";
         header("Location: ../pages/home_universita.php?nav=home_scuola");
+
     } else if (checkLogin("azienda", $codice_scuola,  $password, $conn)) {
         $_SESSION["tipo_scuola"] = "azienda";
         header("Location: ../pages/home_azienda.php?nav=home_scuola");
+
     } else {
         header("Location: login_scuola.php?nav=scuola");
     }
@@ -35,10 +39,11 @@ if ((isset($_POST["username"])) && (isset($_POST["password"]))) {
 
     if (mysqli_num_rows($result) > 0) {
         $_SESSION["utente"] = $data["username"];
+        unset($_SESSION['tipo_scuola']);
         header("Location: ../pages/home_studente.php?nav=home_studente");
     } else {
         mysqli_close($conn);
-        header("Location: login_studente.php");
+        header("Location: login_studente.php?nav=studente");
     }
 }
 

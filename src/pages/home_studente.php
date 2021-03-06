@@ -22,6 +22,10 @@
 
 <body data-spy="scroll" data-target=".fixed-top">
     <?php
+
+    if(!isset($_SESSION['utente']))
+        header('location: ../../index.php');
+
     include '../templates/header.php';
     ?>
 
