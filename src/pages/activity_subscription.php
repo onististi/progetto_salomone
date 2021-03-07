@@ -1,20 +1,22 @@
 <?php include '../config/connect_db.php'; 
 
 if(isset($_GET['sub'])){
-    $id_A = $_POST['standChoosen'];
-
+    $id_A = $_POST['ChosenStand'];
     $sql = "SELECT matricola FROM studente WHERE username = "."'".$_SESSION['utente']."'";
     $result = $conn->query($sql);
     $row = $result->fetch_assoc();
     $matricola = $row['matricola'];
 
-    $k = $_POST['standChoosen'];
+    $k = $_POST['ChosenStand'];
     $sql = "INSERT INTO iscrizione(fk_matricola,fk_attivita) VALUES ('$matricola','$k')";
     $resultt = $conn->query($sql);
-    header("location: activity_subscription.php?nav=home_studente");
+    //header("location: activity_subscription.php?nav=home_studente");
+   print_r($result);
+   echo $id_A;
 }
 
-
+$s ="SELECT count(*) FROM iscrizione group by iscrizione.fk_attivita";
+$r = $conn->query($s);
 ?>
 
 <!DOCTYPE html>
@@ -33,9 +35,35 @@ if(isset($_GET['sub'])){
     <link href="../assets/css/magnific-popup.css" rel="stylesheet">
     <link href="../assets/css/styles.css" rel="stylesheet">
     <link href="../assets/css/styles_home.css" rel="stylesheet">
-
     <link rel="icon" href="../assets/images/favicon.png">
 </head>
+<style>
+
+.btn {
+	background-color: #2A265F;
+	border: 0;
+	border-radius: 50px;
+	box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
+	color: #fff;
+	font-size: 16px;
+	padding: 12px 25px;
+	bottom: 30px;
+	right: 30px;
+	letter-spacing: 1px;
+}
+
+.floating-btn:hover {
+	background-color: #ffffff;
+	color: #007bff;
+}
+
+.floating-btn:focus {
+	outline: none;
+}
+
+.numerino{
+}
+</style>
 
 <body data-spy="scroll" data-target=".fixed-top">
     <?php
@@ -49,9 +77,9 @@ if(isset($_GET['sub'])){
             $codiceMeccanografico = $_SESSION["codice"];
 
             // connesione al DBMS
-            $query = "SELECT * FROM attivita a NATURAL JOIN registra_attivita ra";
+            $query = "SELECT * FROM attivita a NATURAL JOIN registra_attivita";
+            
             $result = mysqli_query($conn, $query) or die("Query fallita" . mysqli_error($conn) . " " . mysqli_error($conn));
-            //QUI SOTTO
             echo "<br>
             <table class='table'>
                 <thead class='thead-dark'>
@@ -63,14 +91,14 @@ if(isset($_GET['sub'])){
                         <th>Data</th>
                         <th>Ora</th>
                         <th>Organizzatore</th>
+                        <th>Numero partecipanti</th>
                         <th>Invio</th>
                     </tr>
                 </thead>
-            <tbody>
-            ";
+            <tbody>";
 
             while ($row = mysqli_fetch_array($result, MYSQLI_NUM)) // solo numerico
-            {
+            {   $ro = $r->fetch_assoc();
                 //$_SESSION['standChoosen'] = $row[0];
                 echo "
                 <form method='post' action='activity_subscription.php?nav=home_scuola&sub'>
@@ -81,19 +109,29 @@ if(isset($_GET['sub'])){
                     <td> <img src='$row[3]' height='50'> </td>
                     <td> $row[4] </td>
                     <td> $row[5] </td>
+                    
                 ";
 
                 if ($row[6] != null) echo "<td> $row[6] </td>";
                 else if ($row[7] != null) echo "<td> $row[7] </td>";
                 else if ($row[8] != null) echo "<td> $row[8] </td>";
+            
+               echo" <td class='numerino'>"; 
+                if($ro['count(*)'])
+                  echo $ro['count(*)'] ;
+               else
+                    echo"0";
+                echo "/20</td>";
 
+                    ?>
+                    <td><button class="btn" name="ChosenStand" value=<?php echo $row[0];
 
-                echo "
-                    <input type='hidden' name='standChoosen' id='standChoosen' value='$row[0]' readonly>
-                    <td><input type='submit' value='Iscriviti'></td>
+                    if($ro['count(*)'] >=20) //!per se sono piu di 20 fa mhanz
+                        echo 'disabled';
+                    ?>> Partecipa</button></td>
                 </tr>
                 </form>
-            ";
+            <?php
             }
 
             echo "

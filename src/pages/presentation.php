@@ -70,8 +70,8 @@ include '../config/connect_db.php';
                         </div>
                     </div>
                 </div>
+        </div>
     </div>
-</div>
 <script>
 
 

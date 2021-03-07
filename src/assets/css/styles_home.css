@@ -32,28 +32,6 @@
 	text-align: center;
 }
 
-.organize-stand-form .card .btn-solid-reg:hover {
-	background-color: #fff;
-}
-
-.btn-solid-reg {
-	display: inline-block;
-	padding: 1.4rem 3rem;
-	border: 0.125rem solid #00bfd8;
-	border-radius: 2rem;
-	background-color: #00bfd8;
-	color: #fff;
-	font: 700 1rem/0 "Raleway", sans-serif;
-	text-decoration: none;
-	transition: all 0.2s;
-	outline: none;
-}
-
-.btn-solid-reg:hover {
-	background-color: transparent;
-	color: #00bfd8;
-	text-decoration: none;
-}
 
 .form-group {
 	position: relative;
