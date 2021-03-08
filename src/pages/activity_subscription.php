@@ -61,8 +61,6 @@ $r = $conn->query($s);
 	outline: none;
 }
 
-.numerino{
-}
 </style>
 
 <body data-spy="scroll" data-target=".fixed-top">
