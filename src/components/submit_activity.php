@@ -25,7 +25,8 @@ while ($row = mysqli_fetch_array($result, MYSQLI_NUM)) {
 
 if($valid){
 //$destination = $_SERVER['DOCUMENT_ROOT'] . 'html/Gruppo-Tedeschi-Guzzo-Fallara-Onisti/progetto_salomone/src/uploads' . $codiceMeccanografico . ".jpeg"; //WARNING: CAMBIA PER OGNUNO DI NOI!! RIGA JACOPO
-$destination = $_SERVER['DOCUMENT_ROOT'] . '/WebSites/progetto_salomone/src/uploads/' . $codiceMeccanografico . ".jpeg"; //WARNING: CAMBIA PER OGNUNO DI NOI!! RIGA JACOPO
+//$destination = $_SERVER['DOCUMENT_ROOT'] . '/WebSites/progetto_salomone/src/uploads/' . $codiceMeccanografico . ".jpeg"; //WARNING: CAMBIA PER OGNUNO DI NOI!! RIGA JACOPO
+$destination = '../uploads/' . $codiceMeccanografico . ".jpeg"; //WARNING: CAMBIA PER OGNUNO DI NOI!! RIGA WINDOWS
 $uploaded = move_uploaded_file($_FILES['logo']['tmp_name'], $destination);
 
 if ($uploaded) {
