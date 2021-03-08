@@ -41,11 +41,7 @@ die();
 
     <link rel="icon" href="src/assets/images/favicon.png">
 </head>
-<style>
-img{}
 
-
-</style>
 <body data-spy="scroll" data-target=".fixed-top">
     <?php include 'src/templates/header.html' ?>
 

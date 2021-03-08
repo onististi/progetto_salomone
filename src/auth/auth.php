@@ -39,19 +39,11 @@ if ((isset($_POST["username"])) && (isset($_POST["password"]))) {
 
     if (mysqli_num_rows($result) > 0) {
         $_SESSION["utente"] = $data["username"];
-<<<<<<< HEAD
         unset($_SESSION['tipo_scuola']);
         header("Location: ../pages/home_studente.php?nav=home_studente");
     } else {
         mysqli_close($conn);
         header("Location: login_studente.php?nav=studente");
-=======
-        $_SESSION["matricola"] = $data["matricola"];
-        header("Location: ../pages/home_studente.php?nav=home_studente");
-    } else {
-        mysqli_close($conn);
-        header("Location: login_studente.php?nav=home_studente");
->>>>>>> 07e1492d8a2b6590939a3ebea5f3e8cdf170c3cf
     }
 }
 
