@@ -73,3 +73,87 @@ $r = $conn->query($s);
     <header id="header" class="header">
         <div class="header-content">
         <?php
+        if(isset($_SESSION['codice']))
+        $codiceMeccanografico = $_SESSION["codice"];
+
+        // connesione al DBMS
+        $query = "SELECT * FROM attivita a NATURAL JOIN registra_attivita";
+        
+        $result = mysqli_query($conn, $query) or die("Query fallita" . mysqli_error($conn) . " " . mysqli_error($conn));
+        echo "<br>
+        <table class='table'>
+            <thead class='thead-dark'>
+                <tr>
+                    <th>ID_Attivita</th>
+                    <th>Titolo</th>
+                    <th>Descrizione</th>
+                    <th>Logo</th>
+                    <th>Data</th>
+                    <th>Ora</th>
+                    <th>Organizzatore</th>
+                    <th>Numero partecipanti</th>
+                    <th>Invio</th>
+                </tr>
+            </thead>
+        <tbody>";
+
+        while ($row = mysqli_fetch_array($result, MYSQLI_NUM)) // solo numerico
+        {   $ro = $r->fetch_assoc();
+            //$_SESSION['standChoosen'] = $row[0];
+            echo "
+            <form method='post' action='activity_subscription.php?nav=home_scuola&sub'>
+            <tr>
+                <td> $row[0] </td>
+                <td> $row[1] </td>
+                <td> $row[2] </td>
+                <td> <img src='$row[3]' height='50'> </td>
+                <td> $row[4] </td>
+                <td> $row[5] </td>
+                
+            ";
+
+            if ($row[6] != null) echo "<td> $row[6] </td>";
+            else if ($row[7] != null) echo "<td> $row[7] </td>";
+            else if ($row[8] != null) echo "<td> $row[8] </td>";
+        
+           echo" <td class='numerino'>"; 
+            if($ro['count(*)'])
+              echo $ro['count(*)'] ;
+           else
+                echo"0";
+            echo "/20</td>";
+
+                ?>
+                <td><button class="btn" name="ChosenStand" value=<?php echo $row[0];
+
+                if($ro['count(*)'] >=20) //!per se sono piu di 20 fa mhanz
+                    echo 'disabled';
+                ?>> Partecipa</button></td>
+            </tr>
+            </form>
+        <?php
+        }
+
+        echo "
+            </tbody>
+        </table>
+        ";
+        ?>
+    </div>
+</header>
+
+<?php
+include '../templates/footer.html';
+?>
+
+<script src="../assets/js/jquery.min.js"></script>
+<script src="../assets/js/popper.min.js"></script>
+<script src="../assets/js/bootstrap.min.js"></script>
+<script src="../assets/js/jquery.easing.min.js"></script>
+<script src="../assets/js/swiper.min.js"></script>
+<script src="../assets/js/jquery.magnific-popup.js"></script>
+<script src="../assets/js/validator.min.js"></script>
+<script src="../assets/js/scripts.js"></script>
+</body>
+
+</html>
