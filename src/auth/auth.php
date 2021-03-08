@@ -51,7 +51,11 @@ if ((isset($_POST["username"])) && (isset($_POST["password"]))) {
     } else {
         mysqli_close($conn);
         header("Location: login_studente.php?nav=home_studente");
+<<<<<<< HEAD
 >>>>>>> 6997e3fe13674d8fbad31bc200f385ea6366a69f
+=======
+>>>>>>> 07e1492d8a2b6590939a3ebea5f3e8cdf170c3cf
+>>>>>>> tiziano
     }
 }
 

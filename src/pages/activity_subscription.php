@@ -88,7 +88,11 @@ $r = $conn->query($s);
             $query = "SELECT * FROM attivita a NATURAL JOIN registra_attivita ra";
             $result = mysqli_query($conn, $query) or die("Query fallita" . mysqli_error($conn) . " " . mysqli_error($conn));
             //QUI SOTTO
+<<<<<<< HEAD
 >>>>>>> 6997e3fe13674d8fbad31bc200f385ea6366a69f
+=======
+>>>>>>> 07e1492d8a2b6590939a3ebea5f3e8cdf170c3cf
+>>>>>>> tiziano
             echo "<br>
             <table class='table'>
                 <thead class='thead-dark'>
@@ -124,7 +128,11 @@ $r = $conn->query($s);
                 //$_SESSION['standChoosen'] = $row[0];
                 echo "
                 <form method='post' action='../components/subscription.php?nav=home_scuola'>
+<<<<<<< HEAD
 >>>>>>> 6997e3fe13674d8fbad31bc200f385ea6366a69f
+=======
+>>>>>>> 07e1492d8a2b6590939a3ebea5f3e8cdf170c3cf
+>>>>>>> tiziano
                 <tr>
                     <td> $row[0] </td>
                     <td> $row[1] </td>
@@ -135,7 +143,11 @@ $r = $conn->query($s);
 <<<<<<< HEAD
                     
 =======
+<<<<<<< HEAD
 >>>>>>> 6997e3fe13674d8fbad31bc200f385ea6366a69f
+=======
+>>>>>>> 07e1492d8a2b6590939a3ebea5f3e8cdf170c3cf
+>>>>>>> tiziano
                 ";
 
                 if ($row[6] != null) echo "<td> $row[6] </td>";
@@ -168,7 +180,11 @@ $r = $conn->query($s);
                 </tr>
                 </form>
             ";
+<<<<<<< HEAD
 >>>>>>> 6997e3fe13674d8fbad31bc200f385ea6366a69f
+=======
+>>>>>>> 07e1492d8a2b6590939a3ebea5f3e8cdf170c3cf
+>>>>>>> tiziano
             }
 
             echo "
