@@ -1,4 +1,7 @@
-<?php include '../config/connect_db.php'; ?>
+<?php 
+include '../config/connect_db.php'; 
+include '../components/checkDB.php'; 
+?>
 
 <!DOCTYPE html>
 <html lang="it">
@@ -36,20 +39,10 @@
                     <div class="col-lg-6">
                         <div class="text-container">
                             <h1>Benvenuto <span class="turquoise"> <?php echo $_SESSION["utente"] ?> </span></h1>
-                            <p class="p-large">Iscriviti alle attivita...</p>
-                            <!-- <?php
-                                    // if (alreadyCreatedActivity($_SESSION["codice"], $_SESSION["tipo_scuola"])) {
-                                    //     echo "<form action='manage_stand.php'>                                            
-                                    //                 <input type='submit' class='btn-solid-reg page-scroll' value='GESTISCI ATTIVITÀ'>
-                                    //                 <input name='nav' value='home_scuola' hidden>
-                                    //             </form>";
-                                    // } else {
-                                    //     echo "<form action='organize_stand.php'>
-                                    //                 <input type='submit' class='btn-solid-reg page-scroll' value='ORGANIZZA ATTIVITÀ'>
-                                    //                 <input name='nav' value='home_scuola' hidden>
-                                    //             </form>";
-                                    // }
-                                    ?> -->
+                            <form action='activity_subscription.php'>                                            
+                                <input type='submit' class='btn-solid-reg page-scroll' value='ISCRIVITI AD UNA ATTIVITÀ'>
+                                <input name='nav' value='home_studente' hidden>
+                            </form>
                         </div>
                     </div>
                     <div class="col-lg-6">
@@ -61,6 +54,7 @@
             </div>
         </div>
     </header>
+    
     <?php
     include '../templates/footer.html';
     ?>

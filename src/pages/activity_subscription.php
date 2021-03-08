@@ -73,6 +73,7 @@ $r = $conn->query($s);
     <header id="header" class="header">
         <div class="header-content">
         <?php
+<<<<<<< HEAD
         if(isset($_SESSION['codice']))
             $codiceMeccanografico = $_SESSION["codice"];
 
@@ -80,6 +81,14 @@ $r = $conn->query($s);
             $query = "SELECT * FROM attivita a NATURAL JOIN registra_attivita";
             
             $result = mysqli_query($conn, $query) or die("Query fallita" . mysqli_error($conn) . " " . mysqli_error($conn));
+=======
+            $codiceMeccanografico = $_SESSION["codice"];
+
+            // connesione al DBMS
+            $query = "SELECT * FROM attivita a NATURAL JOIN registra_attivita ra";
+            $result = mysqli_query($conn, $query) or die("Query fallita" . mysqli_error($conn) . " " . mysqli_error($conn));
+            //QUI SOTTO
+>>>>>>> 07e1492d8a2b6590939a3ebea5f3e8cdf170c3cf
             echo "<br>
             <table class='table'>
                 <thead class='thead-dark'>
@@ -91,6 +100,7 @@ $r = $conn->query($s);
                         <th>Data</th>
                         <th>Ora</th>
                         <th>Organizzatore</th>
+<<<<<<< HEAD
                         <th>Numero partecipanti</th>
                         <th>Invio</th>
                     </tr>
@@ -102,6 +112,19 @@ $r = $conn->query($s);
                 //$_SESSION['standChoosen'] = $row[0];
                 echo "
                 <form method='post' action='activity_subscription.php?nav=home_scuola&sub'>
+=======
+                        <th>Invio</th>
+                    </tr>
+                </thead>
+            <tbody>
+            ";
+
+            while ($row = mysqli_fetch_array($result, MYSQLI_NUM)) // solo numerico
+            {
+                //$_SESSION['standChoosen'] = $row[0];
+                echo "
+                <form method='post' action='../components/subscription.php?nav=home_scuola'>
+>>>>>>> 07e1492d8a2b6590939a3ebea5f3e8cdf170c3cf
                 <tr>
                     <td> $row[0] </td>
                     <td> $row[1] </td>
@@ -109,12 +132,16 @@ $r = $conn->query($s);
                     <td> <img src='$row[3]' height='50'> </td>
                     <td> $row[4] </td>
                     <td> $row[5] </td>
+<<<<<<< HEAD
                     
+=======
+>>>>>>> 07e1492d8a2b6590939a3ebea5f3e8cdf170c3cf
                 ";
 
                 if ($row[6] != null) echo "<td> $row[6] </td>";
                 else if ($row[7] != null) echo "<td> $row[7] </td>";
                 else if ($row[8] != null) echo "<td> $row[8] </td>";
+<<<<<<< HEAD
             
                echo" <td class='numerino'>"; 
                 if($ro['count(*)'])
@@ -132,6 +159,16 @@ $r = $conn->query($s);
                 </tr>
                 </form>
             <?php
+=======
+
+
+                echo "
+                    <input type='hidden' name='standChoosen' id='standChoosen' value='$row[0]' readonly>
+                    <td><input type='submit' value='Iscriviti'></td>
+                </tr>
+                </form>
+            ";
+>>>>>>> 07e1492d8a2b6590939a3ebea5f3e8cdf170c3cf
             }
 
             echo "
