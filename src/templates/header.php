@@ -11,7 +11,7 @@
 if(isset($_GET['nav'])){
       $get = $_GET['nav']; 
    if( $get == 'scuola')
-      echo'Login Scuola';
+      echo'Login Scuola / Azienda';
    else if( $get == 'studente')
       echo'Login Studente';
    else if( $get == 'home_scuola')
@@ -40,7 +40,7 @@ if(isset($_GET['nav'])){
    if($get== 'scuola')
       $m.="<a class='nav-link page-scroll' href='login_studente.php?nav=scuola'>Login Studente</a>";
    if ($get== 'studente')
-      $m.="<a class='nav-link page-scroll' href='login_scuola.php?nav=scuola'>Login Scuola </a>";
+      $m.="<a class='nav-link page-scroll' href='login_scuola.php?nav=scuola'>Login Scuola / Azienda </a>";
    if($get== 'home_studente'){
       $m .='<a class="nav-link page-scroll" href="program.php?nav=home_studente">Programma</a> <li class="nav-item">
                         <a class="nav-link page-scroll" href="activity_subscription.php?nav=home_studente">Iscrizione Attività</a>
@@ -74,7 +74,7 @@ if(isset($_GET['nav'])){
 
     if (alreadySubmitted($_SESSION["codice"]))
         echo "<li class='nav-item'>
-                  <a class='nav-link page-scroll' href='register_students.php?nav=home_scuola' style='color:red;'>Studenti già registrati</a>
+                  <a class='nav-link page-scroll' href='students.php?nav=home_scuola' style='color:red;'>Studenti già registrati</a>
                </li>";
      else 
         echo "<li class='nav-item'>
