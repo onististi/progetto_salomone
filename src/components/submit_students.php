@@ -13,6 +13,7 @@ while ($data = fgetcsv($file)) {
     $codiceMeccanografico = $_SESSION["codice"];
     $appUsername = strtolower($student_data[1] . "." . $student_data[2]);
     $username =  str_replace(' ', '_', $appUsername);
+    $username .= rand(1,99);                        //? se ci sono due con lo stesso nome;
     $cryptpass = crypt($student_data[2], '$5$idkanysus$');
 
     //query
@@ -20,10 +21,15 @@ while ($data = fgetcsv($file)) {
 			VALUES ('$student_data[0]','$codiceMeccanografico','$student_data[1]', '$student_data[2]', '$username', '$cryptpass', '$student_data[3]', '$student_data[4]', '$student_data[5]', '$student_data[6]')";
 
     if (!mysqli_query($conn, $query)) {    //if theres any problem
-        echo "<center><p style='font-size: 2vw;'>$username non registrato correttamente.</p><p style='font-size: 1vw;'>Error: " . mysqli_error($conn) . "</p></center>";
+
+        if(mysqli_errno($conn)==1062)
+            echo "<center><p style='font-size: 2vw;'>$username non registrato correttamente.</p><p style='font-size: 1vw;'>Error: studente gia presente </p></center>";
+        else
+            echo "<center><p style='font-size: 2vw;'>$username non registrato correttamente.</p><p style='font-size: 1vw;'>Error: " . mysqli_error($conn) . "</p></center>";
         $success = false;
         //$_SESSION["registrato"] = "failed";
-    }
+    }else
+        email($student_data,$username,$student_data[2]);
 }
 
 if ($success) {    //if success
@@ -36,3 +42,15 @@ echo "<a href='../../index.php'>Esci</a>";
 fclose($file);
 //remove file
 //
+
+function email($student_data,$username,$pass){
+    $email =  $student_data[4];
+    $subject = "Credenziali accesso Salone Orientamento";
+    $message = "Le tue credenziali di accesso sono : \n Username: $username \n Password = $pass \n Buono Studio!!";
+
+    $headers = "From: saloneOr@mail.it" . "\r\n" .
+    'Reply-To: saloneO@mail.it' . "\r\n" .
+    'X-Mailer: PHP/' . phpversion();
+
+    mail($email, $subject, $message, $headers);
+}

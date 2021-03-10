@@ -76,8 +76,8 @@ $r = $conn->query($s);
         if(isset($_SESSION['codice']))
             $codiceMeccanografico = $_SESSION["codice"];
 
-            // connesione al DBMS
-            $query = "SELECT * FROM attivita a NATURAL JOIN registra_attivita";
+            // connesione al DBMS query per le attivita a cui non è iscritto
+            $query = "SELECT * from attivita NATURAL JOIN registra_attivita  WHERE attivita.id_attivita NOT IN(SELECT id_attivita FROM attivita JOIN iscrizione on iscrizione.fk_attivita = attivita.id_attivita JOIN studente on studente.matricola = iscrizione.fk_matricola WHERE studente.username = "."'".$_SESSION['utente']."')";
             
             $result = mysqli_query($conn, $query) or die("Query fallita" . mysqli_error($conn) . " " . mysqli_error($conn));
             echo "<br>
@@ -143,8 +143,7 @@ $r = $conn->query($s);
     </header>
 
     <?php
-    include '../templates/footer.html';
-    ?>
+    include '../templates/footer.html';?>
 
     <script src="../assets/js/jquery.min.js"></script>
     <script src="../assets/js/popper.min.js"></script>

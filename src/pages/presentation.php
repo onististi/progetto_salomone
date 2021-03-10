@@ -1,5 +1,8 @@
 <?php 
 include '../config/connect_db.php';
+
+if(!isset($_POST['ChosenStand']))
+    header("location: ../../index.php");
 ?>
 
 <html lang="en">
