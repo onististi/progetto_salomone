@@ -25,6 +25,10 @@
     <header id="header" class="header">
         <div class="header-content">
             <div id="login-form" class="login-form">
+                <?php 
+                    if(isset($_GET['e']))
+                        echo "<p style='color:red'>username o password sbagliati</p>";
+                ?>
                 <div class="card">
                     <div class="card-body">
                         <form action="auth.php" method="POST" data-toggle="validator" data-focus="false">

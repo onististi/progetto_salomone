@@ -142,7 +142,7 @@ if ($_GET['nav'] == 'scuola') {     //!fatto
     </nav>";
 
 
-} else if (($_GET['nav'] == 'home_scuola') && ($_SESSION["tipo_scuola"] == "azienda")) { //!fatta
+} else if ( ($_GET['nav'] == 'home_scuola') && ($_SESSION["tipo_scuola"] == "azienda")) { //!fatta
     include '../components/checkDB.php';
     echo "<nav class='navbar navbar-expand-lg navbar-dark navbar-custom fixed-top'>
                 <a class='navbar-brand logo-image' href='home_azienda.php?nav=home_scuola'><img src='../assets/images/logo.png' alt='alternative'></a>
@@ -188,6 +188,26 @@ if ($_GET['nav'] == 'scuola') {     //!fatto
                         </li>
                         <li class='nav-item'>
                             <a class='nav-link page-scroll' href='activity_subscription.php?nav=home_studente'>Iscrizione Attività</a>
+                        </li>
+                        <li class='nav-item'>
+                            <a class='nav-link page-scroll' href='../../index.php?l'>Logout</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>";
+}else if (  $_GET['nav'] == 'amministratore') { //!fatto
+    echo "<nav class='navbar navbar-expand-lg navbar-dark navbar-custom fixed-top'>
+                <a class='navbar-brand logo-image' href='home_studente.php?nav=home_studente'><img src='../assets/images/logo.png' alt='alternative'></a>
+                <h3 class='navbar-brand logo-text'>Home Studente</h3>
+                
+                <button class='navbar-toggler' type='button' data-toggle='collapse' data-target='#navbarsExampleDefault' aria-controls='navbarsExampleDefault' aria-expanded='false' aria-label='Toggle navigation'>
+                    <span class='navbar-toggler-awesome fas fa-bars'></span>
+                    <span class='navbar-toggler-awesome fas fa-times'></span>
+                </button>
+                <div class='collapse navbar-collapse' id='navbarsExampleDefault'>
+                    <ul class='navbar-nav ml-auto'>
+                        <li class='nav-item'>
+                            <a class='nav-link page-scroll' href='school_subscription.php?nav=amministratore'>Iscrizione Scuola</a>
                         </li>
                         <li class='nav-item'>
                             <a class='nav-link page-scroll' href='../../index.php?l'>Logout</a>

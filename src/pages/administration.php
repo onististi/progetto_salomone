@@ -1,10 +1,7 @@
-<?php include '../config/connect_db.php';
+<?php include '../config/connect_db.php'; 
 
-if($_SESSION['tipo_scuola'] != "universita")
-    header('location: ../../index.php?p');
-
-
-
+if(!isset($_SESSION['tipo_scuola']) || $_SESSION['tipo_scuola'] != 'amministratore')
+   header("location: ../../index.php");
 ?>
 
 <!DOCTYPE html>
@@ -14,7 +11,7 @@ if($_SESSION['tipo_scuola'] != "universita")
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <title>Home Università</title>
+    <title>Amminstrazione</title>
 
     <link href="https://fonts.googleapis.com/css?family=Raleway:400,400i,600,700,700i&amp;subset=latin-ext" rel="stylesheet">
     <link href="../assets/css/bootstrap.css" rel="stylesheet">
@@ -39,19 +36,19 @@ if($_SESSION['tipo_scuola'] != "universita")
                     <div class="col-lg-6">
                         <div class="text-container">
                             <h1>Benvenuto <span class="turquoise"> <?php echo $_SESSION["scuola"] ?> </span></h1>
-                            <p class="p-large">Organizza il tuo stand per far conoscere la tua scuola agli studenti</p>
+                            <p class="p-large"></p>
                             <?php
-                            if (alreadyCreatedActivity($_SESSION["codice"], $_SESSION["tipo_scuola"])) {
-                                echo "<form action='manage_stand.php'>                                            
-                                            <input type='submit' class='btn-solid-reg page-scroll' value='GESTISCI ATTIVITÀ'>
-                                            <input name='nav' value='home_scuola' hidden>
-                                        </form>";
-                            } else {
-                                echo "<form action='organize_stand.php'>
-                                            <input type='submit' class='btn-solid-reg page-scroll' value='ORGANIZZA ATTIVITÀ'>
-                                            <input name='nav' value='home_scuola' hidden>
-                                        </form>";
-                            }
+                            // if (alreadyCreatedActivity($_SESSION["codice"], $_SESSION["tipo_scuola"])) {
+                            //     echo "<form action='manage_stand.php'>                                            
+                            //                 <input type='submit' class='btn-solid-reg page-scroll' value='GESTISCI ATTIVITÀ'>
+                            //                 <input name='nav' value='home_scuola' hidden>
+                            //             </form>";
+                            // } else {
+                            //     echo "<form action='organize_stand.php'>
+                            //                 <input type='submit' class='btn-solid-reg page-scroll' value='ORGANIZZA ATTIVITÀ'>
+                            //                 <input name='nav' value='home_scuola' hidden>
+                            //             </form>";
+                            // }
                             ?>
                         </div>
                     </div>

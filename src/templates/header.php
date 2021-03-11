@@ -101,6 +101,10 @@ if(isset($_GET['nav'])){
                <a class='nav-link page-scroll' href='organize_stand.php?nav=home_scuola'>Organizza Attività</a>
             </li>";
 
+   if($get == 'amministratore' && $_SESSION['tipo_scuola'] == "amministratore"){
+         echo "<a class='nav-link page-scroll' href='register_school.php?nav=amministratore'>Inserisci Scuola</a>
+            </li>"; //* il <li> che viene aperto a riga 30
+         }
 
       echo "<li class='nav-item'>
                <a class='nav-link page-scroll' href='../../index.php?l'>Logout</a>

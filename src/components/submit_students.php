@@ -15,7 +15,7 @@ while ($data = fgetcsv($file)) {
     $username =  str_replace(' ', '_', $appUsername);
    // $username .= rand(1,99);                        //? se ci sono due con lo stesso nome;
     $username .= $student_data[5];
-    $cryptpass = crypt($student_data[2], '$5$idkanysus$');
+    $cryptpass = password_hash($student_data[2], PASSWORD_DEFAULT);
 
     //query
     $query = "INSERT INTO studente (matricola ,fk_scuola ,nome, cognome, username, password ,sesso, mail, classe, data_nascita)
