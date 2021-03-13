@@ -1,8 +1,8 @@
 <?php 
 include '../config/connect_db.php';
 
-if(!isset($_POST['ChosenStand']))
-    header("location: ../../index.php");
+// if(!isset($_POST['ChosenStand']))
+//     header("location: ../../index.php");
 ?>
 
 <html lang="en">
@@ -17,14 +17,14 @@ if(!isset($_POST['ChosenStand']))
     <link href="../assets/css/magnific-popup.css" rel="stylesheet">
     <link href="../assets/css/styles.css" rel="stylesheet">
     <link rel="icon" href="../assets/images/favicon.png">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="../assets/js/jquery.min.js"></script>
     <script src="../assets/js/bootstrap.min.js"></script>
     <script src="../assets/js/scripts.js"></script>
-   <title>Presentazione</title>
+   <title>Presentazione </title>
 </head>
 <body data-spy="scroll" data-target=".fixed-top">
 <?php include '../templates/header.php'; ?>
-
     <header id="header" class="header">
         <div class="header-content">
                 <div class="row">
@@ -32,41 +32,43 @@ if(!isset($_POST['ChosenStand']))
                      <video width="100%" height="700" controls>
                         <source src="" type="video/mp4">
                       </video> 
+    <p id="ida" style="visibility:hidden"><?php echo $_POST['ChosenStand']?></p>
 
                     </div>
+                    
                     <div class="chat">
                        
-                     <!-- Chat Box-->
-                            <div class="col-10 px-0">
-                            <div class="px-6 py-4 chat-box bg-white">
-                                <!-- Sender Message-->
-                                <div class="media w-50 mb-3">
-                                <div class="media-body ml-3">
-                                    <div class="bg-light rounded py-2 px-3 mb-2">
-                                    <p class="text-small mb-0 text-muted">Test which is a new approach all solutions</p>
+                    
+                         <div class="col-10 px-0">
+                            <div class="px-6 py-4 chat-box bg-white" id="messages">
+                                
+                              <!--  <div class="media w-50 mb-3">
+                                    <div class="media-body ml-3">
+                                        <div class="bg-light rounded py-2 px-3 mb-2">
+                                            <p class="text-small mb-0 text-muted">Test which is a new approach all solutions</p>
+                                         </div>
+                                        <p class="small text-muted">12:00  | giorno 13</p>
                                     </div>
-                                    <p class="small text-muted">12:00  | giorno 13</p>
-                                </div>
-                                </div>
+                                </div> -->
 
                                 <!-- Reciever Message-->
-                                <div class="media w-50 ml-auto mb-3">
-                                <div class="media-body">
-                                    <div class="bg-primary rounded py-2 px-3 mb-2">
-                                    <p class="text-small mb-0 text-white">Negro negro</p>
+                                <!-- <div class="media w-50 ml-auto mb-3">
+                                    <div class="media-body">
+                                        <div class="bg-primary rounded py-2 px-3 mb-2">
+                                            <p class="text-small mb-0 text-white">Negro negro</p>
+                                        </div>
+                                        <p class="small text-muted">12:00 | giorno 13</p>
                                     </div>
-                                    <p class="small text-muted">12:00 | giorno 13</p>
-                                </div>
-                                </div>
+                                </div> -->
 
                             </div>
 
                             <!-- Typing area -->
-                            <form action="#" class="bg-light" id="send-container">
+                            <form class="bg-light" id="send-container" method="post">
                                 <div class="input-group">
-                                <input type="text" autofocus placeholder="Type a message" aria-describedby="button-addon2" id="message-input" class="form-control rounded-0 border-0 py-4 bg-light">
+                                <input type="text" autofocus placeholder="Type a message" aria-describedby="button-addon2" name="message" id="message" class="form-control rounded-0 border-0 py-4 bg-light">
                                 <div class="input-group-append">
-                                    <button id="send-button" type="submit" class="btn btn-link" value="send"> <i class="fa fa-paper-plane"></i></button>
+                                    <button id="send-button" type="submit" class="btn btn-link" value="Send"> <i class="fa fa-paper-plane"></i></button>
                                 </div>
                                 </div>
                             </form>
@@ -76,9 +78,42 @@ if(!isset($_POST['ChosenStand']))
         </div>
     </div>
 <script>
+ var url="../components/chat.php";
+ var start =0;
+ var from = null;
 
+$(document).ready(function(){
+    load();
+$('form').submit(function(e){
+    
+    $.post(url,{
+        message: $('#message').val(),
+        attivita : $('#ida').text(),
+        from : from
+        });
 
+       $('message').val(''); 
+    return false;
+    })
+});
 
+function load(){
+    console.log( $('#ida').text());
+    $.get(url+'?start='+ start+"&fk_attivita="+ $('#ida').text() ,function(result){
+        if(result.items){
+            result.items.forEach(item => {
+                start = item.id;
+                $('#messages').append(renderMessage(item));
+            })
+        };
+         setTimeout(function(){load()},400);
+    });
+}
+
+function renderMessage(item){
+    console.log(item);
+    return '<div class="media w-50 ml-auto mb-3"><div class="media-body"><div class="bg-primary rounded py-2 px-3 mb-2"><p class="text-small mb-0 text-white">'+item.message+' </p></div><p class="small text-muted">'+item.sender +'</p></div></div>';
+}
 </script>
 
 </body>
