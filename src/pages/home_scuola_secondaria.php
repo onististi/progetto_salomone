@@ -41,7 +41,7 @@ if($_SESSION['tipo_scuola'] != "scuola_secondo_grado")
                             <p class="p-large">Organizza il tuo stand per far conoscere la tua scuola agli studenti</p>
                             <?php
                             if (alreadyCreatedActivity($_SESSION["codice"], $_SESSION["tipo_scuola"])) {
-                                echo "<form action='manage_stand.php'>                                            
+                                echo "<form action='choose_stand_to_manage.php'>                                            
                                             <input type='submit' class='btn-solid-reg page-scroll' value='GESTISCI ATTIVITÀ'>
                                             <input name='nav' value='home_scuola' hidden>
                                         </form>";
