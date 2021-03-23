@@ -10,9 +10,9 @@ if(isset($_GET['sub'])){
     $k = $_POST['ChosenStand'];
     $sql = "INSERT INTO iscrizione(fk_matricola,fk_attivita) VALUES ('$matricola','$k')";
     $resultt = $conn->query($sql);
-    //header("location: activity_subscription.php?nav=home_studente");
-   print_r($result);
-   echo $id_A;
+    header("location: activity_subscription.php?nav=home_studente");
+ //  print_r($result);
+   //echo $id_A;
 }
 
 $s ="SELECT count(*) FROM iscrizione group by iscrizione.fk_attivita";
@@ -101,7 +101,7 @@ $r = $conn->query($s);
             {   $ro = $r->fetch_assoc();
                 //$_SESSION['standChoosen'] = $row[0];
                 echo "
-                <form method='post' action='activity_subscription.php?nav=home_scuola&sub'>
+                <form method='post' action='activity_subscription.php?nav=home_studente&sub'>
                 <tr>
                     <td> $row[0] </td>
                     <td> $row[1] </td>
