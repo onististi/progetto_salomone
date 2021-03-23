@@ -23,6 +23,7 @@ if($_SESSION['tipo_scuola'] != "universita")
     <link href="../assets/css/magnific-popup.css" rel="stylesheet">
     <link href="../assets/css/styles.css" rel="stylesheet">
     <link href="../assets/css/styles_home.css" rel="stylesheet">
+    <link href="../assets/css/styles_login.css" rel="stylesheet">
 
     <link rel="icon" href="../assets/images/favicon.png">
 </head>
